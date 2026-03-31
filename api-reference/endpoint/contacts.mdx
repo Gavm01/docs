@@ -1,0 +1,385 @@
+---
+title: "Contacts"
+description: "Fetch and manage customer contacts"
+---
+
+## Contacts Endpoint
+
+Retrieve customer information and manage contact data.
+
+## List Contacts
+
+Get all contacts for your sub-account.
+
+**Endpoint:**
+```
+GET /contacts
+```
+
+**Parameters:**
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `limit` | number | No | Max results (default: 25, max: 100) |
+| `offset` | number | No | Skip first N results (for pagination) |
+| `search` | string | No | Search by name or email |
+| `tag` | string | No | Filter by tag |
+| `sort` | string | No | Sort by: `created`, `updated`, `name` |
+
+**Request:**
+```bash
+curl -X GET "https://api.agentclara.app/contacts?limit=25&sort=updated" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": "cust_abc123",
+      "name": "John Smith",
+      "email": "john@example.com",
+      "phone": "+15551234567",
+      "tags": ["vip", "frequent_visitor"],
+      "created_at": "2024-01-15T10:30:00Z",
+      "updated_at": "2024-03-15T14:20:00Z",
+      "last_conversation": "2024-03-15T10:30:00Z"
+    }
+  ]
+}
+```
+
+## Get Single Contact
+
+Get details about one customer.
+
+**Endpoint:**
+```
+GET /contacts/{contact_id}
+```
+
+**Parameters:**
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `contact_id` | string | Yes | The contact ID |
+
+**Request:**
+```bash
+curl -X GET "https://api.agentclara.app/contacts/cust_abc123" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": {
+    "id": "cust_abc123",
+    "name": "John Smith",
+    "email": "john@example.com",
+    "phone": "+15551234567",
+    "tags": ["vip"],
+    "custom_fields": {
+      "company": "Acme Corp",
+      "industry": "Technology"
+    },
+    "created_at": "2024-01-15T10:30:00Z",
+    "updated_at": "2024-03-15T14:20:00Z",
+    "conversation_count": 12,
+    "last_conversation": "2024-03-15T10:30:00Z"
+  }
+}
+```
+
+## Create Contact
+
+Add a new customer to your contacts.
+
+**Endpoint:**
+```
+POST /contacts
+```
+
+**Body Parameters:**
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `name` | string | Yes | Customer's name |
+| `email` | string | No | Email address |
+| `phone` | string | No | Phone number |
+| `tags` | array | No | Tags: `["vip", "frequent"]` |
+| `custom_fields` | object | No | Custom data: `{"company": "Acme"}` |
+
+**Request:**
+```bash
+curl -X POST "https://api.agentclara.app/contacts" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Sarah Johnson",
+    "email": "sarah@example.com",
+    "phone": "+15559876543",
+    "tags": ["new_lead"],
+    "custom_fields": {
+      "company": "Tech Solutions Inc"
+    }
+  }'
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": {
+    "id": "cust_xyz789",
+    "name": "Sarah Johnson",
+    "email": "sarah@example.com",
+    "phone": "+15559876543",
+    "tags": ["new_lead"],
+    "created_at": "2024-03-15T15:00:00Z"
+  }
+}
+```
+
+## Update Contact
+
+Modify contact information.
+
+**Endpoint:**
+```
+PATCH /contacts/{contact_id}
+```
+
+**Body Parameters:**
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `name` | string | No | Customer's name |
+| `email` | string | No | Email address |
+| `phone` | string | No | Phone number |
+| `tags` | array | No | Update tags |
+| `custom_fields` | object | No | Update custom data |
+
+**Request:**
+```bash
+curl -X PATCH "https://api.agentclara.app/contacts/cust_abc123" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "john.smith@newcompany.com",
+    "tags": ["vip", "renewal_pending"],
+    "custom_fields": {
+      "company": "New Corp",
+      "renewal_date": "2024-06-15"
+    }
+  }'
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": {
+    "id": "cust_abc123",
+    "name": "John Smith",
+    "email": "john.smith@newcompany.com",
+    "tags": ["vip", "renewal_pending"],
+    "updated_at": "2024-03-15T15:30:00Z"
+  }
+}
+```
+
+## Search Contacts
+
+Find contacts by name or email.
+
+**Endpoint:**
+```
+GET /contacts/search
+```
+
+**Parameters:**
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `q` | string | Yes | Search query (name or email) |
+| `limit` | number | No | Max results (default: 10) |
+
+**Request:**
+```bash
+curl -X GET "https://api.agentclara.app/contacts/search?q=john&limit=5" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": "cust_abc123",
+      "name": "John Smith",
+      "email": "john@example.com"
+    },
+    {
+      "id": "cust_def456",
+      "name": "John Davis",
+      "email": "johndavis@example.com"
+    }
+  ]
+}
+```
+
+## Get Contact Conversations
+
+Get all conversations for a specific contact.
+
+**Endpoint:**
+```
+GET /contacts/{contact_id}/conversations
+```
+
+**Parameters:**
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `limit` | number | No | Max results (default: 25) |
+| `offset` | number | No | Skip first N results |
+
+**Request:**
+```bash
+curl -X GET "https://api.agentclara.app/contacts/cust_abc123/conversations?limit=10" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": "conv_abc123",
+      "channel": "sms",
+      "subject": "Appointment Question",
+      "last_message": "Can I reschedule?",
+      "timestamp": "2024-03-15T10:30:00Z",
+      "status": "open"
+    }
+  ]
+}
+```
+
+## Delete Contact
+
+Remove a contact from your system.
+
+**Endpoint:**
+```
+DELETE /contacts/{contact_id}
+```
+
+**Request:**
+```bash
+curl -X DELETE "https://api.agentclara.app/contacts/cust_abc123" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "message": "Contact deleted"
+}
+```
+
+## Contact Fields
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | string | Unique contact ID |
+| `name` | string | Customer's full name |
+| `email` | string | Email address |
+| `phone` | string | Phone number (E.164 format) |
+| `tags` | array | Customer tags |
+| `custom_fields` | object | Custom data fields |
+| `created_at` | ISO 8601 | When contact was created |
+| `updated_at` | ISO 8601 | Last update |
+| `last_conversation` | ISO 8601 | Most recent message |
+| `conversation_count` | number | Total conversations |
+
+## Examples
+
+### Get All VIP Customers
+
+```bash
+curl -X GET "https://api.agentclara.app/contacts?tag=vip&limit=50" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+### Search for a Customer
+
+```bash
+curl -X GET "https://api.agentclara.app/contacts/search?q=jane@example.com" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+### Add Contact with Custom Data
+
+```bash
+curl -X POST "https://api.agentclara.app/contacts" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Mike Johnson",
+    "phone": "+15555555555",
+    "tags": ["enterprise"],
+    "custom_fields": {
+      "account_value": "50000",
+      "industry": "Manufacturing",
+      "contract_end": "2024-12-31"
+    }
+  }'
+```
+
+### Update Tags on Contact
+
+```bash
+curl -X PATCH "https://api.agentclara.app/contacts/cust_abc123" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "tags": ["vip", "renewal_pending", "interested_in_upsell"]
+  }'
+```
+
+## Error Responses
+
+**400 - Bad Request:**
+```json
+{
+  "success": false,
+  "error": "Missing required field: name"
+}
+```
+
+**404 - Not Found:**
+```json
+{
+  "success": false,
+  "error": "Contact not found"
+}
+```
+
+---
+
+## Next Steps
+
+- **Manage conversations** - See [Conversations](/api-reference/endpoint/conversations)
+- **Set up webhooks** - See [Webhooks](/api-reference/endpoint/webhooks)
+
+---
+
+**Questions?** Email support@agentclara.ai

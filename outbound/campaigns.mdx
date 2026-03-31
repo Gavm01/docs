@@ -1,0 +1,303 @@
+---
+title: "Creating Campaigns"
+description: "Launch your first outbound calling campaign"
+---
+
+## Create Your First Campaign
+
+Walk through the campaign creation process step-by-step.
+
+## Step 1: Go to Outbound
+
+Navigate to **[https://agentclara.app/launch/outbound](https://agentclara.app/launch/outbound)** and click **"Create New Campaign"**.
+
+## Step 2: Name Your Campaign
+
+Give it a clear name:
+- "Appointment Reminders - March"
+- "Win-Back Campaign - Lapsed Customers"
+- "Product Launch - Cold Outreach"
+
+The name is for your records (customers won't see it).
+
+## Step 3: Choose Your Contacts
+
+**Option A: Upload CSV**
+
+Prepare a spreadsheet with these columns:
+- **phone** - Phone number (required)
+- **name** - First name or full name
+- **company** - (optional) Company name
+- **email** - (optional) Email address
+- **tags** - (optional) Custom data
+
+Save as CSV and upload.
+
+**Example CSV:**
+```
+phone,name,company,email
+5551234567,John Smith,Acme Corp,john@acme.com
+5559876543,Jane Doe,Tech Startup,jane@startup.com
+```
+
+**Option B: Select from Database**
+
+If you have contacts already in AgentClara:
+1. Click **"Select from Contacts"**
+2. Filter by:
+   - **Date range** - "Last contacted 3+ months ago"
+   - **Tags** - "Past customers"
+   - **Custom fields** - Any criteria
+
+Click **"Add Selected"** to add them to your campaign.
+
+**Option C: Audience Builder**
+
+Advanced: Build an audience by rules:
+- "All customers tagged 'VIP' who haven't visited in 6 months"
+- "All leads from March who didn't book"
+- Etc.
+
+The system shows your audience size before you launch.
+
+## Step 4: Validate Contacts
+
+The system checks:
+- ✅ Phone numbers are valid (real format)
+- ✅ No duplicates
+- ✅ Not on Do Not Call registry (we filter these)
+- ✅ Timezone-aware (we note each contact's timezone)
+
+If there are errors, we show them so you can fix them.
+
+**Invalid numbers are removed automatically—no charge for those calls.**
+
+## Step 5: Write Your Script
+
+Go to the **Script** section and write what Clara should say.
+
+### Script Tips
+
+**Start natural:**
+❌ "I am Clara the AI assistant calling you regarding our business opportunity."
+
+✅ "Hi John, this is Clara from Beautiful Cuts Salon. I'm calling about your appointment tomorrow."
+
+**Use their name:** People respond better when you use their name.
+
+**Be specific:** Don't be vague. Tell them WHY you're calling.
+
+**Keep it conversational:** Write how you'd actually speak on a phone.
+
+**Ask for action:** End with something they should do:
+- "Are you interested?"
+- "Can I book you in?"
+- "Should I send you more info?"
+
+### Example Scripts
+
+**Appointment Reminder:**
+> "Hi [Name], this is Clara from Beautiful Cuts. Just wanted to remind you that you have an appointment with us tomorrow at [Time]. We're looking forward to seeing you! Press 1 to confirm or press 2 if you need to reschedule."
+
+**Lead Follow-Up:**
+> "Hi [Name], this is Clara from TechFlow Consulting. We spoke last week about improving your sales process. I wanted to follow up and see if you had a chance to think about our proposal. Do you have 10 minutes to talk?"
+
+**Win-Back Campaign:**
+> "Hi [Name], this is Clara from Fitness Plus Gym. We noticed it's been a while since you've been in, and we want you back! We just added new equipment and classes. Are you interested in a free trial week?"
+
+**Survey:**
+> "Hi [Name], quick question: How was your recent experience at our salon? Just rate it 1 to 5 by pressing a number. 5 being excellent."
+
+### Using Variables
+
+Use brackets for data from your contact list:
+- `[Name]` - Customer's name
+- `[Company]` - Company name
+- `[Time]` - Appointment time
+- `[Custom Field]` - Any custom data you uploaded
+
+Example: "Hi [Name] from [Company], this is Clara..."
+
+If a field is missing, Clara skips it gracefully.
+
+## Step 6: Set Calling Rules
+
+### When to Call
+
+**Start Date**
+- Today
+- Tomorrow
+- Specific date
+
+**Call Window**
+- 9am - 5pm (business hours)
+- 10am - 8pm (extended)
+- Custom hours
+
+**Timezone**
+- **Your timezone** - Call everyone at the same time
+- **Their timezone** - Call each person during their business hours (recommended)
+
+### Call Rate
+
+How many calls to make per minute:
+- **Slow (1/min)** - Spread calls throughout day, more conversational
+- **Medium (2/min)** - Balanced
+- **Fast (5/min)** - Maximum throughput (not recommended for conversation-based campaigns)
+
+For most campaigns, **1-2 per minute** works best.
+
+### Retry Settings
+
+If someone doesn't answer:
+- **Retry after X days** - How long to wait before trying again
+- **Max retries** - How many times to call (usually 1-3)
+- **Retry after voicemail?** - Yes or No
+
+Example: Retry after 1 day, max 2 times = call once, if no answer, try again tomorrow.
+
+### Duration
+
+- **Max call length** - "End the call after 5 minutes" (prevents long monologues)
+- **Leave voicemail?** - If no one answers, should Clara leave a message?
+
+## Step 7: Preview
+
+Before launching, Clara will give you a preview:
+
+**Preview shows:**
+- Campaign name ✅
+- Number of contacts ✅
+- Your script ✅
+- Calling rules ✅
+- Estimated cost ✅
+
+**Review everything carefully.**
+
+Click **"Edit"** if you need to change anything.
+
+## Step 8: Launch!
+
+Click **"Launch Campaign"**.
+
+Clara starts calling immediately (or at your scheduled time).
+
+You'll see:
+- **Real-time stats** - Calls made, answered, voicemail
+- **Live transcript** - See what's happening in active calls
+- **Pause button** - Stop calling if needed
+
+## Monitoring Your Campaign
+
+### Real-Time Dashboard
+
+Watch as Clara calls:
+- **Calls Attempted** - How many numbers tried
+- **Answered** - Live conversations
+- **Voicemail** - Left messages
+- **Appointments Booked** - Success count
+- **Not Interested** - Declined
+
+### View Recordings
+
+Click any call to:
+- **Listen to recording** - Hear what happened
+- **Read transcript** - See what was said word-for-word
+- **See outcome** - Appointment booked? Voicemail left?
+- **Review sentiment** - Did they seem interested?
+
+### Adjust On the Fly
+
+While running:
+- **Pause** - Stop calling (resume later)
+- **Change rate** - Speed up or slow down
+- **Stop campaign** - End it early
+
+## After the Campaign
+
+### Review Results
+
+Go to **Reports** to see:
+- **Total calls made**
+- **Conversation rate** - % who answered
+- **Conversion rate** - % who booked/said yes
+- **Cost per conversion** - How much each result cost
+
+### Use Results
+
+- **Export list** - Download all outcomes as CSV
+- **Retarget** - Create new campaign for people who didn't answer
+- **Segment** - Tag "interested," "not interested," "try again later"
+
+### Iterate
+
+What worked? What didn't?
+- **Improve script** - Test different wording next time
+- **Adjust timing** - Try different call windows
+- **Change rate** - Slower calls might convert better
+- **Target better** - Focus on specific audience segments
+
+## Costs
+
+- **Outbound calls** - ~$0.10-0.20 per call (varies by country, length)
+- **Recorded calls** - Included in call cost
+- **Voicemail transcription** - Included in call cost
+
+You're charged per call attempted, not per minute.
+
+## Common Mistakes to Avoid
+
+<Warning>
+**Don't use a bad contact list.** Bad phone numbers waste money. Clean your list first.
+</Warning>
+
+<Warning>
+**Don't make the script too long.** Clara should keep it under 30 seconds. Long scripts bore people.
+</Warning>
+
+<Warning>
+**Don't call too fast.** 5 calls/min feels robotic. Stick to 1-2/min for better results.
+</Warning>
+
+<Warning>
+**Don't ignore compliance.** You need the right to call these people. See [Compliance](/outbound/compliance).
+</Warning>
+
+## Troubleshooting
+
+<Accordion title="My campaign isn't calling anyone">
+  Check:
+  1. Did you set a future launch date? (It won't start until then)
+  2. Are all contacts valid phone numbers? (Invalid ones are skipped)
+  3. Is the campaign paused? (Check status)
+
+  If still broken, email support@agentclara.ai
+</Accordion>
+
+<Accordion title="Calls are taking too long">
+  1. Reduce call length in **Calling Rules** (e.g., max 5 minutes)
+  2. Simplify your script (shorter = faster)
+  3. Increase call rate (make calls parallel)
+</Accordion>
+
+<Accordion title="I want to pause and resume later">
+  Click **Pause** on your campaign. You can resume any time. Paused campaigns don't incur charges.
+</Accordion>
+
+<Accordion title="Can I add more contacts mid-campaign?">
+  Yes. Go to your campaign > **Edit** > **Add Contacts** > Upload more numbers.
+
+  Clara will call them alongside the original list.
+</Accordion>
+
+---
+
+## What's Next?
+
+- **Use a template** - Start with a pre-written script
+- **Review results** - Analyze what worked
+- **Create follow-up campaign** - Call non-responders again
+
+---
+
+**Questions?** Email support@agentclara.ai

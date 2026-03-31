@@ -1,0 +1,429 @@
+---
+title: "Webhooks"
+description: "Subscribe to real-time events in AgentClara"
+---
+
+## Webhooks
+
+Webhooks notify your application when events happen in AgentClara. Instead of polling the API constantly, we push data to you.
+
+## How Webhooks Work
+
+1. **You give us a URL** - Where to send event data
+2. **Event happens** - Message received, appointment booked, etc.
+3. **We send a POST request** - To your URL with event details
+4. **You process it** - Update your system, send notification, etc.
+
+## Setting Up Webhooks
+
+<Steps>
+
+<Step title="Get Your Webhook URL">
+This is where we send events. You need an endpoint that:
+- Accepts POST requests
+- Returns 200 OK status
+- Processes JSON data
+
+Example: `https://your-app.com/webhooks/agentclara`
+</Step>
+
+<Step title="Go to Webhooks Dashboard">
+Go to **[https://agentclara.app/settings/advanced](https://agentclara.app/settings/advanced)** > **Webhooks**
+</Step>
+
+<Step title="Create Webhook">
+Click **"Create New Webhook"**
+</Step>
+
+<Step title="Enter Your URL">
+Paste your endpoint URL
+</Step>
+
+<Step title="Select Events">
+Choose which events to receive:
+- Conversation events
+- Message events
+- Appointment events
+- Etc.
+</Step>
+
+<Step title="Save">
+Click **Save**. We'll test the webhook by sending a test event.
+</Step>
+
+</Steps>
+
+## Available Events
+
+### conversation.created
+
+A new conversation started.
+
+```json
+{
+  "event": "conversation.created",
+  "timestamp": "2024-03-15T10:30:00Z",
+  "data": {
+    "conversation_id": "conv_abc123",
+    "customer_id": "cust_xyz789",
+    "customer_name": "John Smith",
+    "channel": "sms",
+    "status": "open"
+  }
+}
+```
+
+### conversation.updated
+
+Conversation status or metadata changed.
+
+```json
+{
+  "event": "conversation.updated",
+  "timestamp": "2024-03-15T10:35:00Z",
+  "data": {
+    "conversation_id": "conv_abc123",
+    "status": "closed",
+    "tags": ["resolved", "satisfied"]
+  }
+}
+```
+
+### message.received
+
+A new message arrived in a conversation.
+
+```json
+{
+  "event": "message.received",
+  "timestamp": "2024-03-15T10:32:00Z",
+  "data": {
+    "conversation_id": "conv_abc123",
+    "message_id": "msg_123",
+    "sender": "customer",
+    "content": "Can I reschedule my appointment?",
+    "channel": "sms"
+  }
+}
+```
+
+### appointment.booked
+
+An appointment was booked (via Clara or manually).
+
+```json
+{
+  "event": "appointment.booked",
+  "timestamp": "2024-03-15T10:35:00Z",
+  "data": {
+    "conversation_id": "conv_abc123",
+    "customer_id": "cust_xyz789",
+    "customer_name": "John Smith",
+    "customer_phone": "+15551234567",
+    "appointment_id": "apt_123",
+    "appointment_time": "2024-03-16T14:00:00Z",
+    "service": "Haircut"
+  }
+}
+```
+
+### conversation.closed
+
+A conversation was marked as resolved/closed.
+
+```json
+{
+  "event": "conversation.closed",
+  "timestamp": "2024-03-15T11:00:00Z",
+  "data": {
+    "conversation_id": "conv_abc123",
+    "customer_id": "cust_xyz789",
+    "closed_at": "2024-03-15T11:00:00Z",
+    "reason": "Resolved"
+  }
+}
+```
+
+## Processing Webhooks
+
+Your endpoint receives a POST request with JSON body:
+
+### Example Node.js Webhook Handler
+
+```javascript
+const express = require('express');
+const app = express();
+
+app.use(express.json());
+
+app.post('/webhooks/agentclara', (req, res) => {
+  const { event, timestamp, data } = req.body;
+
+  console.log(`Received event: ${event}`);
+
+  // Handle different events
+  if (event === 'message.received') {
+    console.log(`New message: ${data.content}`);
+    // Send notification, log to database, etc.
+  } else if (event === 'appointment.booked') {
+    console.log(`Appointment booked: ${data.appointment_time}`);
+    // Add to calendar, send confirmation, etc.
+  } else if (event === 'conversation.closed') {
+    console.log(`Conversation closed: ${data.conversation_id}`);
+    // Archive, follow up, etc.
+  }
+
+  // Return 200 OK to acknowledge receipt
+  res.status(200).json({ success: true });
+});
+
+app.listen(3000, () => {
+  console.log('Webhook server running on port 3000');
+});
+```
+
+### Example Python Webhook Handler
+
+```python
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+@app.route('/webhooks/agentclara', methods=['POST'])
+def handle_webhook():
+    data = request.json
+    event = data.get('event')
+    payload = data.get('data')
+
+    print(f"Received event: {event}")
+
+    if event == 'message.received':
+        print(f"New message: {payload['content']}")
+        # Handle message
+    elif event == 'appointment.booked':
+        print(f"Appointment: {payload['appointment_time']}")
+        # Handle appointment
+
+    # Return 200 OK
+    return jsonify({'success': True}), 200
+
+if __name__ == '__main__':
+    app.run(port=3000)
+```
+
+## Webhook Security
+
+### Verify Webhook Signature
+
+We sign every webhook request with your secret key. Verify it to ensure requests are from us:
+
+**Header:** `X-AgentClara-Signature`
+
+**Algorithm:** HMAC-SHA256
+
+### Verification (Node.js)
+
+```javascript
+const crypto = require('crypto');
+
+app.post('/webhooks/agentclara', (req, res) => {
+  const signature = req.headers['x-agentclara-signature'];
+  const secret = process.env.AGENTCLARA_WEBHOOK_SECRET;
+
+  // Create hash of request body
+  const hash = crypto
+    .createHmac('sha256', secret)
+    .update(JSON.stringify(req.body))
+    .digest('hex');
+
+  // Compare signatures
+  if (hash !== signature) {
+    return res.status(401).json({ error: 'Invalid signature' });
+  }
+
+  // Valid webhook—process it
+  console.log('Webhook verified!');
+  res.status(200).json({ success: true });
+});
+```
+
+### Verification (Python)
+
+```python
+import hmac
+import hashlib
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+SECRET = os.environ.get('AGENTCLARA_WEBHOOK_SECRET')
+
+@app.route('/webhooks/agentclara', methods=['POST'])
+def handle_webhook():
+    signature = request.headers.get('X-AgentClara-Signature')
+
+    # Verify signature
+    expected_hash = hmac.new(
+        SECRET.encode(),
+        request.data,
+        hashlib.sha256
+    ).hexdigest()
+
+    if signature != expected_hash:
+        return jsonify({'error': 'Invalid signature'}), 401
+
+    # Valid webhook
+    return jsonify({'success': True}), 200
+```
+
+## Webhook Deliveries
+
+We retry failed webhooks:
+
+- **Attempt 1** - Immediately
+- **Attempt 2** - 5 seconds later
+- **Attempt 3** - 5 minutes later
+- **Attempt 4** - 30 minutes later
+- **Give up** - After 4 attempts
+
+**Your endpoint must return 200 OK** to acknowledge receipt. Anything else is considered a failure.
+
+## Testing Webhooks
+
+### Manual Test
+
+In the **Webhooks** dashboard, click **"Send Test Event"** to send a sample webhook to your endpoint.
+
+### View Delivery History
+
+Click your webhook to see:
+- Recent deliveries
+- Status codes
+- Response bodies
+- Retry information
+
+### Use a Tool
+
+For local testing, use **ngrok** to expose your local server:
+
+```bash
+ngrok http 3000
+# Gives you a URL like: https://abc123.ngrok.io
+```
+
+Then use that URL as your webhook endpoint in the dashboard.
+
+## Best Practices
+
+<Check>
+**Return 200 immediately.** Don't process in the webhook handler. Queue the work and return fast.
+</Check>
+
+<Check>
+**Verify signatures.** Always check that webhooks are from us.
+</Check>
+
+<Check>
+**Handle duplicates.** Same event might be sent twice. Make your code idempotent.
+</Check>
+
+<Check>
+**Log everything.** Save webhook payloads for debugging.
+</Check>
+
+<Check>
+**Set timeouts.** External API calls in webhooks should timeout after 10 seconds.
+</Check>
+
+<Warning>
+**Don't wait for external APIs.** If your webhook calls an external API and it's slow, you'll timeout. Queue the work instead.
+</Warning>
+
+## Example: Sync to CRM
+
+When a message is received, sync to your CRM:
+
+```javascript
+app.post('/webhooks/agentclara', async (req, res) => {
+  const { event, data } = req.body;
+
+  // Return 200 immediately
+  res.status(200).json({ success: true });
+
+  // Process asynchronously
+  if (event === 'message.received') {
+    // Queue the work
+    await queue.add({
+      type: 'sync_to_crm',
+      conversation_id: data.conversation_id,
+      message: data.content
+    });
+  }
+});
+
+// Separate worker processes the queue
+async function processQueue() {
+  const job = await queue.get();
+
+  // Sync to Salesforce, HubSpot, etc.
+  await crm.upsert({
+    email: job.customer_email,
+    last_message: job.message,
+    last_contact: new Date()
+  });
+}
+```
+
+## Troubleshooting
+
+<Accordion title="I'm not receiving webhooks">
+  1. Check webhook is enabled in dashboard
+  2. Make sure your endpoint is publicly accessible (not localhost)
+  3. Check server logs—are requests coming in?
+  4. Verify you're returning 200 status code
+  5. Check "Deliveries" tab to see why it failed
+</Accordion>
+
+<Accordion title="Webhook delivery keeps failing">
+  Look in the "Deliveries" tab:
+  - **500 error?** Your server is crashing
+  - **Connection refused?** Endpoint is down
+  - **Timeout?** Your code is too slow (process async instead)
+
+  Fix the issue and we'll retry.
+</Accordion>
+
+<Accordion title="I'm getting duplicate events">
+  This is normal. Make your code idempotent:
+
+  ```javascript
+  // Check if message already exists
+  const exists = await Message.findOne({
+    agentclara_id: data.message_id
+  });
+  if (exists) return; // Already processed
+
+  // Save new message
+  await Message.create({ agentclara_id: data.message_id, ... });
+  ```
+</Accordion>
+
+<Accordion title="How do I test webhooks locally?">
+  Use ngrok:
+
+  ```bash
+  ngrok http 3000  # Expose localhost:3000
+  ```
+
+  Use the provided URL in the webhook dashboard: `https://abc123.ngrok.io/webhooks/agentclara`
+</Accordion>
+
+---
+
+## Next Steps
+
+- **Send messages via API** - See [Conversations](/api-reference/endpoint/conversations)
+- **Manage contacts** - See [Contacts](/api-reference/endpoint/contacts)
+
+---
+
+**Questions?** Email support@agentclara.ai

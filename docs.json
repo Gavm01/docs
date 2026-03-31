@@ -1,11 +1,11 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "AgentClara",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#8B3CF7",
+    "light": "#A855F7",
+    "dark": "#7C3AED"
   },
   "favicon": "/favicon.svg",
   "navigation": {
@@ -17,32 +17,46 @@
             "group": "Getting started",
             "pages": [
               "index",
-              "quickstart",
-              "development"
+              "getting-started/what-is-clara",
+              "getting-started/quick-setup",
+              "getting-started/your-first-agent"
             ]
           },
           {
-            "group": "Customization",
+            "group": "Agency Setup",
             "pages": [
-              "essentials/settings",
-              "essentials/navigation"
+              "agency-setup/overview",
+              "agency-setup/adding-clients",
+              "agency-setup/white-label",
+              "agency-setup/billing"
             ]
           },
           {
-            "group": "Writing content",
+            "group": "Voice Calls",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
+              "voice-calls/overview",
+              "voice-calls/setting-up-voice",
+              "voice-calls/call-handling",
+              "voice-calls/voicemail"
             ]
           },
           {
-            "group": "AI tools",
+            "group": "Inbox Channels",
             "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
+              "inbox-channels/overview",
+              "inbox-channels/ghl",
+              "inbox-channels/whatsapp",
+              "inbox-channels/instagram",
+              "inbox-channels/sms"
+            ]
+          },
+          {
+            "group": "Outbound Campaigns",
+            "pages": [
+              "outbound/overview",
+              "outbound/campaigns",
+              "outbound/templates",
+              "outbound/compliance"
             ]
           }
         ]
@@ -51,18 +65,18 @@
         "tab": "API reference",
         "groups": [
           {
-            "group": "API documentation",
+            "group": "API",
             "pages": [
-              "api-reference/introduction"
+              "api-reference/introduction",
+              "api-reference/authentication"
             ]
           },
           {
-            "group": "Endpoint examples",
+            "group": "Endpoints",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "api-reference/endpoint/conversations",
+              "api-reference/endpoint/contacts",
+              "api-reference/endpoint/webhooks"
             ]
           }
         ]
@@ -71,14 +85,9 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
+          "anchor": "Dashboard",
+          "href": "https://agentclara.app",
+          "icon": "arrow-up-right"
         }
       ]
     }
@@ -91,32 +100,27 @@
     "links": [
       {
         "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "href": "mailto:support@agentclara.ai"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "Go to Dashboard",
+      "href": "https://agentclara.app"
     }
   },
   "contextual": {
     "options": [
      "copy",
      "view",
-     "chatgpt",
      "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
+     "perplexity"
    ]
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "x": "https://x.com/agentclara",
+      "linkedin": "https://linkedin.com/company/agentclara"
     }
   }
 }

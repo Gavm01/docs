@@ -1,0 +1,277 @@
+---
+title: "WhatsApp Integration"
+description: "Connect WhatsApp Business to your AgentClara inbox"
+---
+
+## Set Up WhatsApp
+
+WhatsApp is one of the most popular messaging platforms globally. Connect it so Clara can respond to customers on WhatsApp right from your AgentClara inbox.
+
+## Requirements
+
+Before you start, you need:
+1. **A WhatsApp Business Account** (created through Meta/Facebook)
+2. **A phone number** (can be your current business number)
+3. **Admin access** to your WhatsApp Business account
+
+<Info>
+If you don't have a WhatsApp Business Account yet, you'll create it during setup. It's free.
+</Info>
+
+## How to Connect
+
+<Steps>
+
+<Step title="Go to Integrations">
+Go to **[https://agentclara.app/integrations](https://agentclara.app/integrations)**
+</Step>
+
+<Step title="Find WhatsApp">
+Look for **WhatsApp Business** and click **Connect**
+</Step>
+
+<Step title="Choose: New or Existing Account">
+- **I don't have WhatsApp Business** → Click "Create New Account"
+- **I already have WhatsApp Business** → Click "Connect Existing Account"
+
+Both paths take 5-10 minutes.
+</Step>
+
+<Step title="Verify Your Phone Number">
+WhatsApp will send a verification code to your business phone number.
+
+Enter the code to confirm ownership.
+</Step>
+
+<Step title="Connect Your Template Messages">
+WhatsApp requires "approved templates" for certain messages (like confirmations).
+
+We'll help you create:
+- **Appointment confirmation** template
+- **Reminder** template
+- **Custom response** templates
+
+Click the templates we suggest, or create your own.
+</Step>
+
+<Step title="Test It">
+Send a test message to yourself:
+1. From your personal WhatsApp, message your business number
+2. You should see it in AgentClara inbox (labeled "WhatsApp")
+3. Reply from AgentClara
+4. You should see the reply on WhatsApp
+
+If it works, you're connected!
+</Step>
+
+</Steps>
+
+## WhatsApp in Your Inbox
+
+Once connected, WhatsApp conversations appear in **[https://agentclara.app/chats](https://agentclara.app/chats)**:
+- Filter by **Channel: WhatsApp** to see only WhatsApp messages
+- Click any conversation to see the thread
+- Type a reply and send
+
+## How Clara Handles WhatsApp
+
+Clara on WhatsApp can:
+- **Answer questions** about hours, services, pricing
+- **Book appointments** and send confirmations
+- **Handle payments** (if you have Stripe linked)
+- **Send appointment reminders**
+- **Escalate to humans** if needed
+
+**Example conversation:**
+
+Customer: "Hi, can I book a massage for Thursday?"
+
+Clara: "Of course! I have availability at 2pm or 4pm. Which works better?"
+
+Customer: "2pm please"
+
+Clara: "Great! What's your name and phone number?"
+
+Customer: "Sarah, 555-1234"
+
+Clara: "Perfect Sarah! Appointment confirmed for Thursday at 2pm. We'll send you a reminder the day before."
+
+✅ **Booked automatically on your calendar**
+
+## WhatsApp Business vs Personal
+
+**Don't use your personal WhatsApp account.** It won't work with AgentClara.
+
+You **must use WhatsApp Business** (which is free):
+- Separate from your personal account
+- Designed for business conversations
+- Integrates with CRM systems like AgentClara
+- Better for team management
+
+## Common Setups
+
+### Scenario 1: New Business Number
+
+If you want a **new WhatsApp number** for your business:
+1. During setup, select "New Business Number"
+2. We'll assign you a number in your country
+3. Tell customers this number for WhatsApp
+
+### Scenario 2: Existing WhatsApp Business
+
+If you **already have WhatsApp Business connected**:
+1. Select "Connect Existing Account"
+2. Log into your Meta Business Manager
+3. Grant AgentClara permission
+4. Your existing conversations appear instantly
+
+### Scenario 3: Personal Number Upgrade
+
+If you want to **convert your personal WhatsApp to Business** (advanced):
+1. Go to Meta Business Manager
+2. Create a WhatsApp Business Account
+3. Link it to your existing phone number
+4. Conversations migrate to WhatsApp Business
+
+(This requires coordination with Meta. Contact us if you need help.)
+
+## Conversation Workflows
+
+### Appointment Booking via WhatsApp
+
+Customer: "Can I book?"
+
+Clara: "Sure! I have these times available: [list]"
+
+Customer picks a time
+
+Clara: Confirms and sends calendar invite
+
+✅ Appointment syncs to your calendar
+
+### Payment Links via WhatsApp
+
+If you sell products or services:
+
+Clara: "That'll be $50. Here's your payment link: [link]"
+
+Customer clicks link and pays via Stripe
+
+Clara: "Payment received! You're all set."
+
+### Message Requests
+
+WhatsApp has "Message Request" feature if a new customer messages you. You can:
+- Accept and reply (conversation moves to main inbox)
+- Ignore (message stays in requests)
+
+All this works from AgentClara—no need to check WhatsApp app.
+
+## Team Collaboration
+
+If your team uses AgentClara:
+- Assign WhatsApp conversations to specific team members
+- Add internal notes
+- Escalate to managers if needed
+- See conversation history
+
+All happens in AgentClara—your team never needs the WhatsApp app.
+
+## WhatsApp Message Types
+
+| Type | Example | Cost |
+|------|---------|------|
+| **Customer-initiated** | Customer messages you first | Free |
+| **Template messages** | Appointment confirmations | ~$0.01-0.08 per message |
+| **Free template** | Single reminder per customer | Free |
+| **Media messages** | Images, PDFs in chat | Included |
+
+Most of Clara's automatic messages use free templates.
+
+## Broadcasting (Mass Messages)
+
+You can send one message to multiple customers at once:
+
+Go to **[https://agentclara.app/launch](https://agentclara.app/launch)** and look for **Broadcast**.
+
+Examples:
+- "We're closed on Monday"
+- "New service available"
+- "Limited time offer"
+
+Only works if customers opted in.
+
+## Troubleshooting
+
+<Accordion title="I'm not receiving WhatsApp messages in AgentClara">
+  1. Verify your account is fully connected (**Integrations** > **WhatsApp**)
+  2. Send yourself a test message
+  3. Refresh the page
+  4. Check you're looking at the right account (if you have multiple)
+
+  If still broken, disconnect and reconnect.
+</Accordion>
+
+<Accordion title="Clara's replies aren't reaching customers">
+  Check:
+  1. Your WhatsApp template is approved (pending templates don't send)
+  2. The customer hasn't blocked you
+  3. The message isn't too long (WhatsApp has limits)
+
+  See the error message in AgentClara for exact reason.
+</Accordion>
+
+<Accordion title="I want to use my existing WhatsApp Business number">
+  Go to **Meta Business Manager** > **WhatsApp Settings** > **Phone Numbers**
+
+  Find your number, and you can connect it to AgentClara. (Takes 10 minutes with Meta support if issues come up.)
+</Accordion>
+
+<Accordion title="Can I have multiple WhatsApp numbers?">
+  Yes. Go to **[https://agentclara.app/integrations](https://agentclara.app/integrations)** and add another WhatsApp Business account.
+
+  Each number shows in your inbox separately.
+</Accordion>
+
+<Accordion title="What's the cost of WhatsApp messaging?">
+  - Customer messages you: **Free**
+  - You reply within 24 hours: **Free**
+  - You reply after 24 hours: **$0.01-0.08 per message** (varies by country)
+  - Template messages: **Variable** (we handle the details)
+
+  Check your WhatsApp Business settings for exact rates in your country.
+</Accordion>
+
+## Best Practices
+
+<Check>
+**Use approved templates.** WhatsApp requires approval for automated messages.
+</Check>
+
+<Check>
+**Keep messages short.** WhatsApp is for quick, simple messages. Long conversations should move to phone.
+</Check>
+
+<Check>
+**Respond within 24 hours.** After that, messaging costs increase.
+</Check>
+
+<Check>
+**Don't spam.** Only broadcast to customers who opted in.
+</Check>
+
+<Check>
+**Set Clara's WhatsApp tone.** Messages should be casual, brief, and friendly.
+</Check>
+
+---
+
+## What's Next?
+
+- **Connect other channels** - SMS, Email, Instagram
+- **Set up appointment reminders** - Automatic WhatsApp confirmations
+- **View WhatsApp analytics** - See response rates and engagement
+
+---
+
+**Questions?** Email support@agentclara.ai

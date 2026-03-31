@@ -1,0 +1,351 @@
+---
+title: "Conversations"
+description: "Fetch, create, and manage conversations"
+---
+
+## Conversations Endpoint
+
+Work with customer conversations (chats, emails, calls, etc.) through the API.
+
+## List Conversations
+
+Get all conversations for a sub-account.
+
+**Endpoint:**
+```
+GET /conversations
+```
+
+**Parameters:**
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `limit` | number | No | Max results (default: 25, max: 100) |
+| `offset` | number | No | Skip first N results (for pagination) |
+| `channel` | string | No | Filter by channel: `sms`, `email`, `instagram`, `facebook`, `whatsapp`, `voice` |
+| `status` | string | No | Filter by status: `open`, `closed`, `resolved` |
+| `customer_id` | string | No | Filter by customer ID |
+
+**Request:**
+```bash
+curl -X GET "https://api.agentclara.app/conversations?limit=25&channel=sms" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": "conv_abc123",
+      "customer_id": "cust_xyz789",
+      "customer_name": "John Smith",
+      "customer_email": "john@example.com",
+      "customer_phone": "+15551234567",
+      "channel": "sms",
+      "subject": "Appointment Question",
+      "last_message": "Can I move my appointment to Friday?",
+      "timestamp": "2024-03-15T10:30:00Z",
+      "status": "open",
+      "unread": true
+    }
+  ]
+}
+```
+
+## Get Single Conversation
+
+Get details about one conversation.
+
+**Endpoint:**
+```
+GET /conversations/{conversation_id}
+```
+
+**Parameters:**
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `conversation_id` | string | Yes | The conversation ID |
+
+**Request:**
+```bash
+curl -X GET "https://api.agentclara.app/conversations/conv_abc123" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": {
+    "id": "conv_abc123",
+    "customer_id": "cust_xyz789",
+    "customer_name": "John Smith",
+    "customer_phone": "+15551234567",
+    "channel": "sms",
+    "status": "open",
+    "messages": [
+      {
+        "id": "msg_1",
+        "sender": "customer",
+        "content": "Can I reschedule my appointment?",
+        "timestamp": "2024-03-15T10:30:00Z"
+      },
+      {
+        "id": "msg_2",
+        "sender": "assistant",
+        "content": "Of course! What date works better?",
+        "timestamp": "2024-03-15T10:31:00Z"
+      }
+    ]
+  }
+}
+```
+
+## Create Conversation
+
+Start a new conversation programmatically.
+
+**Endpoint:**
+```
+POST /conversations
+```
+
+**Body Parameters:**
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `customer_phone` | string | Conditional | Phone number (if channel is SMS or voice) |
+| `customer_email` | string | Conditional | Email (if channel is email) |
+| `customer_name` | string | No | Customer's name |
+| `channel` | string | Yes | `sms`, `email`, `voice`, etc. |
+| `message` | string | No | Initial message content |
+
+**Request:**
+```bash
+curl -X POST "https://api.agentclara.app/conversations" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "customer_phone": "+15551234567",
+    "customer_name": "John Smith",
+    "channel": "sms",
+    "message": "Hi John, checking in on your appointment!"
+  }'
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": {
+    "id": "conv_abc123",
+    "customer_phone": "+15551234567",
+    "customer_name": "John Smith",
+    "channel": "sms",
+    "status": "open",
+    "message_id": "msg_123"
+  }
+}
+```
+
+## Send Message
+
+Send a message in an existing conversation.
+
+**Endpoint:**
+```
+POST /conversations/{conversation_id}/messages
+```
+
+**Body Parameters:**
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `content` | string | Yes | Message text |
+| `sender` | string | No | `customer` or `assistant` (default: `assistant`) |
+
+**Request:**
+```bash
+curl -X POST "https://api.agentclara.app/conversations/conv_abc123/messages" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "content": "Perfect! I have you down for Friday at 2pm."
+  }'
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": {
+    "message_id": "msg_456",
+    "conversation_id": "conv_abc123",
+    "content": "Perfect! I have you down for Friday at 2pm.",
+    "sender": "assistant",
+    "timestamp": "2024-03-15T10:35:00Z"
+  }
+}
+```
+
+## Update Conversation
+
+Change conversation status or metadata.
+
+**Endpoint:**
+```
+PATCH /conversations/{conversation_id}
+```
+
+**Body Parameters:**
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `status` | string | No | `open`, `closed`, or `resolved` |
+| `customer_name` | string | No | Update customer name |
+| `tags` | array | No | Add tags: `["important", "vip"]` |
+
+**Request:**
+```bash
+curl -X PATCH "https://api.agentclara.app/conversations/conv_abc123" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "status": "resolved",
+    "tags": ["completed", "satisfied"]
+  }'
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": {
+    "id": "conv_abc123",
+    "status": "resolved",
+    "tags": ["completed", "satisfied"]
+  }
+}
+```
+
+## Close Conversation
+
+Mark a conversation as resolved/closed.
+
+**Endpoint:**
+```
+POST /conversations/{conversation_id}/close
+```
+
+**Request:**
+```bash
+curl -X POST "https://api.agentclara.app/conversations/conv_abc123/close" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": {
+    "id": "conv_abc123",
+    "status": "closed",
+    "closed_at": "2024-03-15T11:00:00Z"
+  }
+}
+```
+
+## Conversation Fields
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | string | Unique conversation ID |
+| `customer_id` | string | Associated customer ID |
+| `customer_name` | string | Customer's name |
+| `customer_email` | string | Customer's email |
+| `customer_phone` | string | Customer's phone number |
+| `channel` | string | Communication channel |
+| `status` | string | `open`, `closed`, `resolved` |
+| `subject` | string | Conversation title/subject |
+| `last_message` | string | Most recent message |
+| `timestamp` | ISO 8601 | When conversation started |
+| `unread` | boolean | Has unread messages? |
+| `tags` | array | Customer tags |
+| `messages` | array | Message thread |
+
+## Examples
+
+### List All SMS Conversations
+
+```bash
+curl -X GET "https://api.agentclara.app/conversations?channel=sms&limit=50" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+### Get Unread Conversations
+
+```bash
+curl -X GET "https://api.agentclara.app/conversations?status=open" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+### Create and Send Message
+
+```bash
+# 1. Create conversation
+curl -X POST "https://api.agentclara.app/conversations" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "customer_phone": "+15551234567",
+    "channel": "sms"
+  }'
+
+# 2. Send message (use conv_id from response)
+curl -X POST "https://api.agentclara.app/conversations/conv_abc123/messages" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "content": "Hi! How can we help?"
+  }'
+```
+
+## Error Responses
+
+**400 - Bad Request:**
+```json
+{
+  "success": false,
+  "error": "Missing required field: customer_phone"
+}
+```
+
+**404 - Not Found:**
+```json
+{
+  "success": false,
+  "error": "Conversation not found"
+}
+```
+
+**401 - Unauthorized:**
+```json
+{
+  "success": false,
+  "error": "Invalid API key"
+}
+```
+
+---
+
+## Next Steps
+
+- **Manage contacts** - See [Contacts](/api-reference/endpoint/contacts)
+- **Set up webhooks** - See [Webhooks](/api-reference/endpoint/webhooks)
+
+---
+
+**Questions?** Email support@agentclara.ai

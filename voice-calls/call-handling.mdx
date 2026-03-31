@@ -1,0 +1,240 @@
+---
+title: "Call Handling"
+description: "How Clara manages incoming phone calls"
+---
+
+## How Clara Handles Calls
+
+When someone calls your business, Clara doesn't just read a script. She's having a real conversation, thinking about what the customer needs.
+
+## Call Flow
+
+```
+Customer calls → Clara answers → She listens → She responds → Conversation continues
+                                                                  ↓
+                                              ┌───────────────────┴───────────────────┐
+                                              ↓                                       ↓
+                                    Clara answers question          Customer needs a human
+                                    or books appointment             → Call is saved
+                                              ↓                       → You get notified
+                                    Call recorded & transcribed
+```
+
+## What Clara Can Do
+
+<CardGroup cols={2}>
+  <Card title="Answer Questions" icon="lightbulb">
+    What are your hours? Do you have availability Tuesday?
+  </Card>
+  <Card title="Book Appointments" icon="calendar">
+    I'd like to schedule a haircut for Saturday at 2pm.
+  </Card>
+  <Card title="Collect Information" icon="clipboard">
+    Get the customer's name, phone, email, or specific needs.
+  </Card>
+  <Card title="Take Messages" icon="message">
+    Leave your number and we'll call you back within 24 hours.
+  </Card>
+  <Card title="Route Calls" icon="share">
+    Transfer complex issues to a real team member.
+  </Card>
+  <Card title="Follow Up" icon="bell">
+    Send confirmation texts/emails after the call.
+  </Card>
+</CardGroup>
+
+## Setting Clara's Call Behavior
+
+Go to **[https://agentclara.app/agent](https://agentclara.app/agent)** and configure:
+
+### 1. Greeting
+
+What Clara says when someone calls:
+
+> "Hi, thanks for calling [Your Business]. How can I help you today?"
+
+**Keep it under 20 seconds.** Longer greetings frustrate callers.
+
+### 2. System Prompt
+
+Tell Clara exactly how to handle calls. Example:
+
+> "You're Clara, the assistant for [Business Name]. When someone calls:
+> - Greet them warmly
+> - Listen to what they need
+> - If they ask about hours, tell them [your hours]
+> - If they want to book, ask: name, phone, and preferred date/time
+> - For complex issues, ask for their phone and say 'We'll call you back within 2 hours'
+> - Always be friendly and patient"
+
+### 3. Knowledge Base
+
+Add information Clara needs:
+- **Hours** - Go to **Settings** > **Business Hours**
+- **Services** - Document your offerings
+- **Pricing** - What things cost
+- **Policies** - Cancellation, refunds, etc.
+
+Go to **Settings** > **Knowledge** and add these as FAQs or documents.
+
+### 4. Calendar Integration
+
+If Clara books appointments, she needs to see your availability:
+
+Go to **[https://agentclara.app/integrations](https://agentclara.app/integrations)** and connect your calendar (Google, Outlook, Calendly).
+
+Clara will then offer real available slots.
+
+### 5. Escalation Rules
+
+When does the call go to a human?
+
+Go to **[https://agentclara.app/agent](https://agentclara.app/agent)** > **Escalation** and set:
+
+- **When to transfer** - "If customer asks to speak to a manager"
+- **Where to send it** - Phone number or email of your staff
+- **What to say** - "Let me connect you with my manager"
+
+## Call Recording & Transcripts
+
+Every call is automatically:
+- **Recorded** (stored securely)
+- **Transcribed** (you can read what was said)
+- **Saved to inbox** (shows in [https://agentclara.app/chats](https://agentclara.app/chats))
+
+To listen to a call:
+1. Go to **[https://agentclara.app/chats](https://agentclara.app/chats)**
+2. Find the call (it says "Voice Call" under the timestamp)
+3. Click the play button to listen
+
+## Call Outcomes
+
+Every call should have a clear outcome:
+
+| Outcome | What Happened |
+|---------|---------------|
+| **Appointment Booked** | Customer scheduled a time, Clara added it to calendar |
+| **Question Answered** | Clara answered their question, call ended naturally |
+| **Message Left** | Customer asked to be called back, message saved |
+| **Transferred** | Call sent to a human staff member |
+| **No Answer** | Customer hung up or Clara couldn't connect |
+| **Voicemail** | Call went to voicemail (see [Voicemail](/voice-calls/voicemail)) |
+
+You can see these in the call records: **[https://agentclara.app/chats](https://agentclara.app/chats)** > **Call Type: Voice**
+
+## Best Practices
+
+<Check>
+**Keep greetings short.** Callers don't want to listen to a long message.
+</Check>
+
+<Check>
+**Have a clear escalation policy.** If Clara can't help, the customer shouldn't be left hanging.
+</Check>
+
+<Check>
+**Test before going live.** Call your number from your phone and try different requests.
+</Check>
+
+<Check>
+**Review transcripts regularly.** See what customers are asking about and improve Clara's knowledge.
+</Check>
+
+<Check>
+**Set business hours correctly.** Clara won't book appointments outside your hours.
+</Check>
+
+<Warning>
+**Don't make Clara too conversational.** Keep responses short on calls. Long responses frustrate people on the phone.
+</Warning>
+
+<Warning>
+**Don't forget escalation.** If Clara can't help, have a plan to get customers to a human quickly.
+</Warning>
+
+## Common Call Types
+
+### Appointment Booking
+
+Customer: "Can I book a haircut?"
+
+Clara: "Of course! I have [dates/times]. Which works best for you?"
+
+Customer: "Saturday at 2pm"
+
+Clara: "Perfect! What's your name and number?"
+
+Customer: "John, 555-1234"
+
+Clara: "Great John! Confirmed for Saturday at 2pm. We'll text you a reminder Friday."
+
+✅ **Outcome:** Appointment Booked
+
+### Question Answering
+
+Customer: "What are your hours?"
+
+Clara: "We're open Monday-Friday 9am-6pm, Saturday 10am-4pm, closed Sunday."
+
+Customer: "Thanks!"
+
+Clara: "You're welcome!"
+
+✅ **Outcome:** Question Answered
+
+### Escalation to Human
+
+Customer: "I have a complaint about my last visit"
+
+Clara: "I'm sorry to hear that. I'd like to help, but this sounds like something my manager should handle. Can I have your name and number, and we'll call you back within 2 hours?"
+
+Customer: "Sure, it's Jane at 555-5678"
+
+Clara: "Got it Jane. We'll be in touch soon."
+
+✅ **Outcome:** Escalated to Human
+
+## Handling Problems
+
+<Accordion title="Clara isn't answering questions correctly">
+  1. Go to **Settings** > **Knowledge**
+  2. Add the right information
+  3. Update her system prompt with the correct answer
+  4. Call again to test
+</Accordion>
+
+<Accordion title="Customers are hanging up on Clara">
+  Clara might be:
+  - Talking too fast (go to **Voice Studio**, slow down)
+  - Not understanding (users need to speak clearly—this is normal)
+  - Hard to understand (try a different voice personality)
+
+  Listen to a few recordings to see what's happening.
+</Accordion>
+
+<Accordion title="Clara isn't booking appointments">
+  Check:
+  1. Is your calendar connected? (**Integrations** > **Calendar**)
+  2. Do you have availability in your calendar?
+  3. Did Clara ask for the date and time? (Check the transcript)
+
+  If the issue persists, email support@agentclara.ai with a recording.
+</Accordion>
+
+<Accordion title="I'm not getting notifications of calls">
+  Check **Settings** > **Notifications** and make sure you have alerts enabled.
+
+  Also check your email spam folder—sometimes notifications go there.
+</Accordion>
+
+---
+
+## What's Next?
+
+- **Set up voicemail** - See [Voicemail](/voice-calls/voicemail)
+- **Launch outbound campaigns** - See [Outbound Campaigns](/outbound/campaigns)
+- **View analytics** - See your call statistics and trends
+
+---
+
+**Questions?** Email support@agentclara.ai

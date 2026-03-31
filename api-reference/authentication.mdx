@@ -1,0 +1,324 @@
+---
+title: "Authentication"
+description: "Authenticate with the AgentClara API"
+---
+
+## API Keys
+
+All API requests require an **API key**. Your key proves you have permission to access the API.
+
+## Get Your API Key
+
+<Steps>
+
+<Step title="Sign In">
+Go to **[https://agentclara.app](https://agentclara.app)** and sign in.
+</Step>
+
+<Step title="Go to Settings">
+Click **Settings** in the navigation.
+</Step>
+
+<Step title="Find Advanced">
+Look for **Advanced** (or **Developers**). It might be at the bottom of the settings menu.
+</Step>
+
+<Step title="API Keys Section">
+You'll see **"API Keys"**. Click **"Create New Key"**.
+</Step>
+
+<Step title="Copy Your Key">
+A new key will appear. Copy it immediately and save it somewhere safe.
+
+**You won't see it again.**
+</Step>
+
+</Steps>
+
+## Using Your API Key
+
+Include your API key in every request as a **Bearer token**:
+
+```bash
+curl -X GET "https://api.agentclara.app/conversations" \
+  -H "Authorization: Bearer sk_test_1234567890abcdef"
+```
+
+**Header format:**
+```
+Authorization: Bearer YOUR_API_KEY
+```
+
+Replace `YOUR_API_KEY` with your actual key.
+
+## API Key Security
+
+<Warning>
+**Never share your API key.** Anyone with your key can:
+- Read all your conversations
+- Access customer data
+- Create/delete records
+- Cost you money (if your key is used for malicious requests)
+</Warning>
+
+### Protecting Your Key
+
+**Do:**
+- ✅ Store in environment variables: `process.env.AGENTCLARA_API_KEY`
+- ✅ Use `.env` files (never commit to git)
+- ✅ Rotate keys periodically
+- ✅ Use separate keys for different environments (dev, staging, prod)
+- ✅ Restrict key permissions if available
+
+**Don't:**
+- ❌ Hardcode keys in source code
+- ❌ Commit keys to Git/GitHub
+- ❌ Share keys in Slack/email
+- ❌ Use in client-side code (browser/mobile)
+- ❌ Use production keys in development
+
+### If Your Key is Compromised
+
+1. Go to **Settings** > **Advanced** > **API Keys**
+2. Find the compromised key
+3. Click **Delete** or **Revoke**
+4. Create a new key
+5. Update all your applications with the new key
+
+**Revoke immediately.** Attackers can use stolen keys.
+
+## Key Formats
+
+Keys have this format:
+
+```
+sk_test_1234567890abcdefghijklmnopqrst
+```
+
+- `sk_` - Prefix (indicates secret key)
+- `test_` or `live_` - Environment (test keys are safe for development)
+- `1234...` - Random string (your unique key)
+
+## Multiple Keys
+
+You can create multiple keys for:
+- **Different environments** - Separate keys for dev, staging, production
+- **Different applications** - One key per app
+- **Team members** - Each person has their own key (not shared)
+
+Create as many as you need.
+
+## Authentication Examples
+
+### JavaScript (Node.js)
+
+```javascript
+const fetch = require('node-fetch');
+
+const API_KEY = process.env.AGENTCLARA_API_KEY;
+
+async function getConversations() {
+  const response = await fetch('https://api.agentclara.app/conversations', {
+    headers: {
+      'Authorization': `Bearer ${API_KEY}`,
+      'Content-Type': 'application/json'
+    }
+  });
+
+  const data = await response.json();
+  return data;
+}
+```
+
+### Python
+
+```python
+import requests
+import os
+
+API_KEY = os.environ.get('AGENTCLARA_API_KEY')
+
+headers = {
+    'Authorization': f'Bearer {API_KEY}',
+    'Content-Type': 'application/json'
+}
+
+response = requests.get(
+    'https://api.agentclara.app/conversations',
+    headers=headers
+)
+
+data = response.json()
+print(data)
+```
+
+### cURL
+
+```bash
+curl -X GET "https://api.agentclara.app/conversations" \
+  -H "Authorization: Bearer $AGENTCLARA_API_KEY" \
+  -H "Content-Type: application/json"
+```
+
+### Ruby
+
+```ruby
+require 'net/http'
+require 'json'
+
+api_key = ENV['AGENTCLARA_API_KEY']
+uri = URI('https://api.agentclara.app/conversations')
+
+http = Net::HTTP.new(uri.host, uri.port)
+http.use_ssl = true
+
+request = Net::HTTP::Get.new(uri)
+request['Authorization'] = "Bearer #{api_key}"
+request['Content-Type'] = 'application/json'
+
+response = http.request(request)
+data = JSON.parse(response.body)
+puts data
+```
+
+## Rate Limits
+
+Your API key has rate limits:
+
+- **1,000 requests per minute** (standard tier)
+- **10,000 requests per minute** (enterprise tier)
+
+When you hit the limit, you get:
+
+```json
+{
+  "success": false,
+  "error": "Rate limited",
+  "status": 429
+}
+```
+
+**Retry after 1 second** and you should be fine.
+
+### Handling Rate Limits
+
+**Best practice:** Exponential backoff
+
+```javascript
+async function callAPI(url, maxRetries = 3) {
+  for (let i = 0; i < maxRetries; i++) {
+    try {
+      const response = await fetch(url, {
+        headers: {
+          'Authorization': `Bearer ${API_KEY}`
+        }
+      });
+
+      if (response.status === 429) {
+        // Rate limited—wait and retry
+        const waitTime = Math.pow(2, i) * 1000; // 1s, 2s, 4s...
+        await new Promise(resolve => setTimeout(resolve, waitTime));
+        continue;
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+}
+```
+
+## Environment Variables
+
+Store your API key in `.env`:
+
+```
+AGENTCLARA_API_KEY=sk_test_1234567890abcdef
+```
+
+Load it in your code:
+
+```javascript
+// Node.js
+require('dotenv').config();
+const apiKey = process.env.AGENTCLARA_API_KEY;
+```
+
+```python
+# Python
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+api_key = os.getenv('AGENTCLARA_API_KEY')
+```
+
+## Testing Your Key
+
+Test if your key works:
+
+```bash
+curl -X GET "https://api.agentclara.app/conversations?limit=1" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+If it works, you get:
+
+```json
+{
+  "success": true,
+  "data": [...]
+}
+```
+
+If it fails, you get:
+
+```json
+{
+  "success": false,
+  "error": "Invalid API key"
+}
+```
+
+## Troubleshooting
+
+<Accordion title="'Invalid API key' error">
+  1. Check you copied the full key (no extra spaces)
+  2. Make sure the key hasn't been revoked
+  3. Verify you're using the right environment (test vs. live)
+</Accordion>
+
+<Accordion title="'Unauthorized' error">
+  1. Make sure you included the `Authorization` header
+  2. Use format: `Bearer YOUR_KEY` (with space)
+  3. Check the key hasn't expired
+</Accordion>
+
+<Accordion title="I lost my API key">
+  You can't recover it, but you can:
+  1. Go to **Settings** > **Advanced** > **API Keys**
+  2. Click **Delete** on the old key
+  3. Create a new key
+  4. Update your code with the new key
+</Accordion>
+
+<Accordion title="How do I rotate keys?">
+  1. Create a new key in the dashboard
+  2. Update your applications to use the new key
+  3. Wait a few minutes for existing requests to finish
+  4. Delete the old key
+  5. Done!
+</Accordion>
+
+---
+
+## Next Steps
+
+- **Call the conversations endpoint** - See [Conversations](/api-reference/endpoint/conversations)
+- **Manage contacts** - See [Contacts](/api-reference/endpoint/contacts)
+- **Set up webhooks** - See [Webhooks](/api-reference/endpoint/webhooks)
+
+---
+
+**Questions?** Email support@agentclara.ai
