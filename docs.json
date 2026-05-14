@@ -55,6 +55,7 @@
             "pages": [
               "outbound/overview",
               "outbound/campaigns",
+              "outbound/lead-webhooks",
               "outbound/templates",
               "outbound/compliance"
             ]

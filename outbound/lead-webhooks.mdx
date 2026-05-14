@@ -1,0 +1,344 @@
+---
+title: "Lead Webhooks"
+description: "Automatically call new leads the moment they arrive from your CRM or form builder."
+---
+
+## What are Lead Webhooks?
+
+A lead webhook is a special URL that your CRM sends data to whenever a new lead appears.
+
+Think of it like a doorbell. When someone fills out your form, the CRM rings the doorbell (sends data to the URL). AgentClara answers (receives the data) and immediately schedules a call to the lead.
+
+No manual work. No delays. The lead hears from Clara within 30 seconds.
+
+## How it works
+
+<Steps>
+  <Step title="A new lead appears in your CRM">
+    Someone fills out a form, books a consultation, or gets added as a contact.
+  </Step>
+  <Step title="Your CRM sends the lead's details to AgentClara">
+    The CRM sends the lead's phone number, name, and email to your webhook URL.
+  </Step>
+  <Step title="AgentClara creates a customer record">
+    If the lead is new, a customer record is created. If they already exist, their info is updated.
+  </Step>
+  <Step title="Clara calls the lead">
+    The designated Lead Handler agent dials the lead within 30 seconds. Clara greets them by name.
+  </Step>
+</Steps>
+
+## Find your Webhook URL
+
+You can find your webhook URL in two places.
+
+### Method 1: Agent Settings
+
+1. Open the **AgentClara dashboard**.
+2. Click **Agent** in the sidebar.
+3. Click the **Automation** tab.
+4. Scroll down to **Lead Calling Rules**.
+5. Click the **Webhook URL** dropdown at the bottom.
+6. Click the **copy button** next to the URL.
+
+<Note>
+[SCREENSHOT: Agent → Automation → Lead Calling Rules → Webhook URL dropdown expanded, showing URL + copy button]
+</Note>
+
+### Method 2: Settings Page
+
+1. Go to **Settings → Advanced → Webhooks**.
+2. Find the **Lead Webhooks** card.
+3. Click the **copy button** next to the URL.
+
+<Note>
+[SCREENSHOT: Settings → Advanced → Webhooks → Lead Webhooks card showing URL, status badge, and copy button]
+</Note>
+
+If no URL appears, click **Generate Webhook URL**. A new URL is created instantly.
+
+## Set up your Lead Handler agent
+
+Before leads can be auto-called, you need to turn on the feature for one agent.
+
+<Steps>
+  <Step title="Open Agent Settings">
+    Go to **Agent** in the sidebar. Select the agent you want to handle new leads.
+  </Step>
+  <Step title="Go to the Automation tab">
+    Click the **Automation** tab at the top.
+  </Step>
+  <Step title="Find Lead Calling Rules">
+    Scroll to the **Lead Calling Rules** section.
+  </Step>
+  <Step title="Turn on Auto-call">
+    Toggle **Auto-call new leads** to on. You'll see a green "Active" badge.
+  </Step>
+  <Step title="Configure calling hours (optional)">
+    Set the **Calling Window** (e.g. 9:00 AM to 6:00 PM).
+    Select which **days of the week** Clara should call.
+  </Step>
+</Steps>
+
+<Warning>
+Only one agent per workspace can be the Lead Handler at a time. If you enable it on a second agent, the first one is automatically disabled.
+</Warning>
+
+## Connect GoHighLevel
+
+<Steps>
+  <Step title="Open GoHighLevel">
+    Log in to your GoHighLevel account.
+  </Step>
+  <Step title="Go to Automations → Workflows">
+    Click **Automations** in the left sidebar, then **Workflows**.
+  </Step>
+  <Step title="Create or edit a workflow">
+    Create a new workflow, or open an existing one that triggers on new contacts.
+  </Step>
+  <Step title="Set the trigger">
+    Set the trigger to **Contact Created** or **Form Submitted** — whichever matches your use case.
+  </Step>
+  <Step title="Add a Webhook action">
+    Add an action step. Choose **Webhook / Custom Webhook**.
+  </Step>
+  <Step title="Paste your AgentClara URL">
+    In the URL field, paste the webhook URL you copied from AgentClara.
+  </Step>
+  <Step title="Set method to POST">
+    Make sure the method is **POST** (not GET).
+  </Step>
+  <Step title="Save and publish">
+    Save the workflow and toggle it to **Published**.
+  </Step>
+</Steps>
+
+<Note>
+GHL sends contact data automatically. You do not need to configure which fields to send — AgentClara extracts the phone, name, and email from whatever GHL provides.
+</Note>
+
+## Connect Zapier
+
+<Steps>
+  <Step title="Create a new Zap">
+    Go to [zapier.com](https://zapier.com) and click **Create Zap**.
+  </Step>
+  <Step title="Choose your trigger app">
+    Select the app where leads come from (e.g. Facebook Lead Ads, Typeform, Google Sheets).
+  </Step>
+  <Step title="Set the trigger event">
+    Choose the event that fires when a new lead arrives (e.g. "New Lead", "New Row", "New Entry").
+  </Step>
+  <Step title="Add a Webhooks by Zapier action">
+    For the action step, search for **Webhooks by Zapier** and select it.
+  </Step>
+  <Step title="Choose POST">
+    Select **POST** as the action event.
+  </Step>
+  <Step title="Configure the request">
+    - **URL**: Paste your AgentClara webhook URL
+    - **Payload Type**: JSON
+    - **Data**: Map the fields from your trigger:
+      - `phone` → the lead's phone number (include country code)
+      - `firstName` → the lead's first name
+      - `email` → the lead's email (optional)
+  </Step>
+  <Step title="Test and turn on">
+    Test the Zap. If the test returns `"received": true`, turn it on.
+  </Step>
+</Steps>
+
+## Connect Make.com
+
+<Steps>
+  <Step title="Create a new scenario">
+    Go to [make.com](https://make.com) and create a new scenario.
+  </Step>
+  <Step title="Add your trigger module">
+    Add the module where leads come from (e.g. Facebook Lead Ads, Google Sheets, Typeform).
+  </Step>
+  <Step title="Add an HTTP module">
+    Add an **HTTP → Make a request** module.
+  </Step>
+  <Step title="Configure the request">
+    - **URL**: Paste your AgentClara webhook URL
+    - **Method**: POST
+    - **Body type**: JSON
+    - **Request content**: Map the fields:
+
+    ```json
+    {
+      "phone": "{{lead_phone}}",
+      "firstName": "{{lead_first_name}}",
+      "email": "{{lead_email}}"
+    }
+    ```
+  </Step>
+  <Step title="Run the scenario">
+    Run once to test. Check that the response shows `"received": true`.
+  </Step>
+</Steps>
+
+## Connect anything else
+
+Any tool that can send an HTTP POST request can send leads to AgentClara.
+
+### Request format
+
+```
+POST https://your-project.supabase.co/functions/v1/leads-incoming/wh_YOUR_TOKEN
+Content-Type: application/json
+```
+
+### Payload fields
+
+AgentClara looks for these fields in your JSON payload. It checks multiple locations for each field, so most CRM formats work automatically.
+
+| Field | Where AgentClara looks | Required? |
+|-------|----------------------|-----------|
+| Phone number | `phone`, `phoneNumber`, `body.phone`, `contact.phone`, `customData.phone` | **Yes** |
+| First name | `firstName`, `first_name`, `body.firstName`, `contact.firstName`, `customData.first_name`, or split from `name` | No |
+| Last name | `lastName`, `last_name`, `body.lastName`, `contact.lastName`, `customData.last_name`, or split from `name` | No |
+| Email | `email`, `body.email`, `contact.email`, `customData.email` | No |
+| Contact ID | `id`, `contactId`, `contact_id`, `body.id`, `contact.id`, `customData.contact_id` | No |
+
+### Minimal example
+
+```json
+{
+  "phone": "+447700900123",
+  "firstName": "Sarah"
+}
+```
+
+### Full example
+
+```json
+{
+  "phone": "+447700900123",
+  "firstName": "Sarah",
+  "lastName": "Connor",
+  "email": "sarah@example.com",
+  "contactId": "abc123"
+}
+```
+
+### Phone number format
+
+The phone number **must include the country code**.
+
+| Format | Works? |
+|--------|--------|
+| `+447700900123` | ✅ Yes |
+| `+1 555 123 4567` | ✅ Yes (spaces are stripped) |
+| `07700900123` | ❌ No — missing country code |
+| `555-123-4567` | ❌ No — missing country code |
+
+### Response
+
+AgentClara always responds with HTTP 200, even if the lead was skipped. This prevents your CRM from retrying.
+
+<CodeGroup>
+```json Call scheduled
+{
+  "received": true,
+  "skipped": false,
+  "call_id": "a1b2c3d4-..."
+}
+```
+
+```json Skipped — no phone
+{
+  "received": true,
+  "skipped": true,
+  "reason": "no_phone"
+}
+```
+
+```json Skipped — no lead handler
+{
+  "received": true,
+  "skipped": true,
+  "reason": "no_lead_handler_agent"
+}
+```
+
+```json Skipped — duplicate
+{
+  "received": true,
+  "skipped": true,
+  "reason": "duplicate_within_window"
+}
+```
+</CodeGroup>
+
+## Troubleshooting
+
+### "I sent a lead but no call happened"
+
+1. **Check the phone number format.** It must include the country code (e.g. `+44`, `+1`). Without it, the lead is skipped.
+2. **Check that Auto-call is enabled.** Go to Agent → Automation → Lead Calling Rules. The toggle must be on.
+3. **Check that the agent has an outbound phone number.** Go to Agent → Basic → Agent Phone Number. A number must be assigned.
+4. **Check for duplicates.** If the same lead was sent in the last 24 hours, it's skipped automatically.
+5. **Check the webhook URL is correct.** Copy it fresh from Settings → Webhooks and paste it again in your CRM.
+
+### "I get a 401 error"
+
+Your webhook token is invalid or disabled. Go to Settings → Advanced → Webhooks and generate a new URL.
+
+### "I get a 400 error"
+
+Either:
+- The URL is missing the token (the `wh_...` part at the end)
+- The request body is not valid JSON
+
+### "The call happened but Clara said the wrong name"
+
+The name field in your CRM payload might be in a different format. AgentClara checks `firstName`, `first_name`, `contact.firstName`, and several other paths. Check your CRM's webhook payload format matches one of these.
+
+### "Leads are being called twice"
+
+AgentClara deduplicates leads within a 24-hour window. If you're seeing double calls, your CRM might be sending the same lead from two different triggers (e.g. both "Contact Created" and "Form Submitted"). Disable one of the triggers.
+
+## FAQ
+
+<Note>
+**Can I connect multiple CRMs to the same webhook?**
+Yes. The webhook URL is workspace-level. Any CRM can send leads to it.
+</Note>
+
+<Note>
+**What happens if Auto-call is off when a lead arrives?**
+The lead is received and logged, but skipped with reason `no_lead_handler_agent`. No call is made. When you turn Auto-call on later, only new leads will be called — old ones are not retroactively dialled.
+</Note>
+
+<Note>
+**Can I test the webhook without a real lead?**
+Yes. Use any HTTP tool (like curl or Postman) to send a POST request to your webhook URL with a test phone number.
+</Note>
+
+<Note>
+**How quickly does Clara call after receiving a lead?**
+Within 30 seconds by default. You can adjust this with the "Wait before calling" setting in Lead Calling Rules.
+</Note>
+
+<Note>
+**Is there a limit on how many leads I can send?**
+No hard limit. Each lead is processed individually. Very high volumes (100+ per minute) may experience slight delays.
+</Note>
+
+<Note>
+**What happens if my webhook URL is compromised?**
+Go to Settings → Advanced → Webhooks and generate a new URL. The old URL stops working immediately.
+</Note>
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Outbound Campaigns" href="/outbound/campaigns">
+    Run bulk calling campaigns with scripts and scheduling.
+  </Card>
+  <Card title="Connect GoHighLevel" href="/inbox-channels/ghl">
+    Full GHL integration guide including contacts sync.
+  </Card>
+</CardGroup>
