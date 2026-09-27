@@ -11,7 +11,7 @@ The heading is **Webhooks**. The line under it is **Set up webhook endpoints and
 
 The page also says **Webhooks let external tools (Stripe, Meta, CRMs) send events into Clara in real time.**
 
-You need permission. If you do not have it, you see **You don't have permission to view webhooks** or **You don't have permission to manage webhooks.**
+You need permission. If you do not have it, you see **You don't have permission to view webhooks.** or **You don't have permission to manage webhooks.**
 
 ## Lead webhooks
 
@@ -35,21 +35,25 @@ Above the table, **Webhook Health Overview** shows **Connected Integrations**, *
 
 ## Connect a provider
 
-The page's own steps are:
+The page's own steps are under **How to Connect**:
 
-1. **Create a webhook in your provider.** Examples on the page: Stripe, Twilio, Meta, HubSpot, Salesforce.
-2. **Use the endpoint URL from the table.** Copy the exact URL.
-3. **Add your signing secret** in your backend so signatures can be checked.
+1. **Create a webhook in your provider**. The line under it is **Stripe, Twilio, Meta, HubSpot, Salesforce, etc.**
+2. **Use the endpoint URL from the table**. The line under it is **Copy the exact URL for your integration.**
+3. **Add your signing secret**. The line under it is **Set it up in your backend so signatures can be verified.**
 
-Keep these URLs secret. Anyone with the endpoint can try to send events.
+The page also says **Keep these URLs secret. Anyone with the endpoint can try to send events.**
 
 ## If events fail
 
-- Check the provider's webhook logs.
-- Confirm the endpoint URL matches exactly, with no extra spaces.
-- Confirm the signing secret.
-- Make sure the endpoint is publicly reachable.
-- Use **Open Support & Debug** on the page if you need to look further.
+Open **Troubleshooting**. The page lists:
+
+- **Check your provider's webhook logs for recent errors.**
+- **Confirm the endpoint URL matches exactly (no extra spaces).**
+- **Verify the signing secret in your backend is correct.**
+- **Make sure your backend endpoint is publicly reachable (no VPN/firewall blocking).**
+- **Check the Audit Logs page for security-related events.**
+
+Then **Open Support & Debug**.
 
 A test that fails shows **Test ping failed**.
 

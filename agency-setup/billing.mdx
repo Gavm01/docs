@@ -28,7 +28,7 @@ If nothing is on file, you will see **No active subscription on file. Contact su
 You choose this when you invite them. See [Adding Clients](/agency-setup/adding-clients).
 
 - **Client Plan** — Starter, Growth, Scale, or Enterprise
-- **Setup Fee (£)** — a one-time fee at onboarding, or `0` for none
+- **Setup Fee (£)** — **One-time setup fee charged at onboarding. Leave at 0 for no fee.**
 - **Trial Period (days)** — the helper says **Days before monthly billing starts. 0 = billing starts immediately after setup.** The box allows 0 to 365.
 - **Require card at trial start** — **If enabled, client enters payment details at signup. Trial converts to paid automatically at trial end. If disabled, client uses trial free and must actively upgrade to continue.**
 
@@ -103,7 +103,7 @@ Go to **Agency → Settings → Billing**. Find **Payout Account (Stripe)**.
 <Step title="Connect Stripe">
 Click **Connect Stripe**.
 
-The status moves through **Pending verification** (Stripe usually takes a few minutes), then **Connected** and **Ready to receive payouts.**
+The status moves through **Pending verification**. The line under that is **Stripe is reviewing your account. This usually takes a few minutes.** Then **Connected** and **Ready to receive payouts.**
 </Step>
 
 <Step title="Wait for the payout">
@@ -114,7 +114,7 @@ If Stripe is not connected, that section says **Connect your Stripe account to s
 
 </Steps>
 
-If the connection fails, click **Retry**. If it later says **Account disconnected**, click **Reconnect**.
+If the connection fails, click **Retry**. If it later says **Account disconnected**, the line is **Your Stripe account is no longer linked. Reconnect to resume payouts.** Click **Reconnect**.
 
 ## Cancel your agency subscription
 
@@ -131,7 +131,7 @@ If there is nothing to cancel, you will see **No active subscription**. If it is
 </Accordion>
 
 <Accordion title="Stripe says Pending verification">
-  Wait a few minutes. The card says Stripe is reviewing your account. If it fails, click **Retry**.
+  The card says **Stripe is reviewing your account. This usually takes a few minutes.** If it fails, click **Retry**.
 </Accordion>
 
 <Accordion title="I have earnings but no payout">
