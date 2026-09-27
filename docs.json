@@ -51,6 +51,27 @@
             ]
           },
           {
+            "group": "Teach Clara",
+            "pages": [
+              "teach-clara/knowledge",
+              "teach-clara/follow-ups",
+              "teach-clara/website-chat"
+            ]
+          },
+          {
+            "group": "Customers",
+            "pages": [
+              "customers/contacts",
+              "customers/bookings"
+            ]
+          },
+          {
+            "group": "Automations",
+            "pages": [
+              "automations/flows"
+            ]
+          },
+          {
             "group": "Outbound Campaigns",
             "pages": [
               "outbound/overview",
@@ -59,6 +80,21 @@
               "outbound/templates",
               "outbound/compliance"
             ]
+          },
+          {
+            "group": "Insights",
+            "pages": [
+              "insights/analytics",
+              "insights/issues"
+            ]
+          },
+          {
+            "group": "Your account",
+            "pages": [
+              "account/business",
+              "account/team",
+              "account/billing"
+            ]
           }
         ]
       },
@@ -66,17 +102,10 @@
         "tab": "API reference",
         "groups": [
           {
-            "group": "API",
+            "group": "Connections",
             "pages": [
               "api-reference/introduction",
-              "api-reference/authentication"
-            ]
-          },
-          {
-            "group": "Endpoints",
-            "pages": [
-              "api-reference/endpoint/conversations",
-              "api-reference/endpoint/contacts",
+              "api-reference/authentication",
               "api-reference/endpoint/webhooks"
             ]
           }

@@ -1,109 +1,46 @@
 ---
-title: "Voice Calls Overview"
-description: "Let Clara answer calls and handle conversations on the phone"
+title: "Voice calls"
+description: "Let Clara answer and place calls from your own number"
 ---
 
-## Clara on the Phone
+## Clara on the phone
 
-Clara isn't just text-based. Customers can call your business and talk to Clara directly. She can:
-- **Answer calls instantly** (no more waiting on hold)
-- **Answer questions** about hours, pricing, services
-- **Book appointments** by collecting dates and times
-- **Take messages** for human staff to follow up
-- **Handle call routing** (transfer to a real person if needed)
+Clara can answer calls to your number and place outbound calls. You test her in **Voice Lab** before customers hear her.
 
-## How It Works
+Calls use a number from **Phone Numbers**. Inbound calls follow the call forwarding rules in **Agent** settings.
 
-**When a customer calls your business number:**
-
-1. Clara answers (she sounds like a real person)
-2. She listens to what they need
-3. She answers questions or books an appointment
-4. If needed, she transfers the call to a staff member
-
-**You get a notification** of missed calls, messages, and scheduled appointments—all in your [https://agentclara.app/chats](https://agentclara.app/chats) inbox.
-
-## Getting Started with Voice
-
-To set up voice calls:
+## Do this first
 
 <Steps>
 
-<Step title="Get a Phone Number">
-Go to **[https://agentclara.app/integrations/phone-numbers](https://agentclara.app/integrations/phone-numbers)**
+<Step title="Get a number">
+Open [Phone Numbers](https://agentclara.app/integrations/phone-numbers) and click **Get a Number**.
 
-Choose:
-- **Get a new number** - We'll give you a local number (costs ~$2-5/month)
-- **Use your existing number** - Redirect your current business number to Clara (requires carrier setup)
-
-Click **Get Number** and follow the steps.
+See [Setting up voice](/voice-calls/setting-up-voice).
 </Step>
 
-<Step title="Teach Clara About Calls">
-Go to **[https://agentclara.app/agent](https://agentclara.app/agent)** > **Voice Personality**
+<Step title="Set call behaviour">
+Open **Agents**, then the **Routing** tab.
 
-Tell Clara:
-- How to greet callers ("Hi, thanks for calling Beautiful Cuts!")
-- What information to collect
-- When to transfer calls to a human
-
-Add this to your system prompt:
-> "You're Clara, our phone assistant. Greet callers warmly. If you can't help, ask for their phone number and say we'll call them back."
+That is **Call Routing**. It includes **Voicemail Handling**. See [Call handling](/voice-calls/call-handling).
 </Step>
 
-<Step title="Connect Your Calendar">
-If Clara is booking appointments, she needs to see when you're available.
-
-Go to **[https://agentclara.app/integrations](https://agentclara.app/integrations)** > **Calendar**
-
-Connect Google Calendar, Outlook, or Calendly.
-</Step>
-
-<Step title="Test It">
-Call your new phone number from your cell phone. Clara should answer. Try:
-- "What are your hours?"
-- "Can I book an appointment?"
-- "Do you offer [service]?"
-
-If she answers wrong, go back and add information to her knowledge base.
+<Step title="Hear her yourself">
+Open **Voice Lab** at [https://agentclara.app/test/voice](https://agentclara.app/test/voice).
 </Step>
 
 </Steps>
 
-## Voice Channels
+## Where calls show up
 
-<CardGroup cols={2}>
-  <Card title="Inbound Calls" icon="phone-incoming">
-    Customers call you → Clara answers
-  </Card>
-  <Card title="Voicemail" icon="voicemail">
-    Customer leaves a message → Clara transcribes it
-  </Card>
-  <Card title="Outbound Campaigns" icon="phone-outgoing">
-    Clara calls customers (by the thousands) for marketing or follow-ups
-  </Card>
-</CardGroup>
+**Voice** is one of the channels in the **Inbox**, next to SMS, email, WhatsApp, Instagram, Facebook, and the chat widget.
 
-## View Call Records
+Outbound calling campaigns live under **Broadcasts**, not on this page. See [Broadcasts](/outbound/overview).
 
-All calls show up in your **[https://agentclara.app/chats](https://agentclara.app/chats)** inbox.
+## What's next
 
-Each call shows:
-- **Who called** (their phone number)
-- **When** (date and time)
-- **Duration** (how long the call lasted)
-- **Transcript** (what was said)
-- **Outcome** (appointment booked, message left, etc.)
-
-Click a call to see the full conversation and take action.
-
-## What's Next?
-
-- **Set up inbound calls** - See [Setting Up Voice](/voice-calls/setting-up-voice)
-- **Understand call handling** - See [Call Handling](/voice-calls/call-handling)
-- **Set up voicemail** - See [Voicemail](/voice-calls/voicemail)
-- **Launch outbound campaigns** - See [Outbound Campaigns](/outbound/campaigns)
-
----
+- [Setting up voice](/voice-calls/setting-up-voice)
+- [Call handling](/voice-calls/call-handling)
+- [Voicemail](/voice-calls/voicemail)
 
 **Questions?** Email support@agentclara.ai

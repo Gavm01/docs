@@ -1,251 +1,74 @@
 ---
-title: "Setting Up Voice"
-description: "Get your phone number ready for Clara"
+title: "Setting up voice"
+description: "Get a phone number Clara can use for calls and texts"
 ---
 
-## Set Up Your Phone Number
+## Open Phone Numbers
 
-Clara needs a phone number to receive calls. You have two options:
+Go to [https://agentclara.app/integrations/phone-numbers](https://agentclara.app/integrations/phone-numbers).
 
-<CardGroup cols={2}>
-  <Card title="New Number" icon="plus">
-    We give you a new local phone number (recommended for starting out)
-  </Card>
-  <Card title="Existing Number" icon="phone">
-    Use your current business number (more setup required)
-  </Card>
-</CardGroup>
+The page title is **Phone Numbers**. The line under it is **Manage your phone numbers and SMS settings**.
 
-## Option 1: Get a New Number (Easiest)
+Until you add one, you see **No phone number added yet** and **Add a number to start sending SMS and making calls from your own line.**
+
+## Get a number
 
 <Steps>
 
-<Step title="Go to Phone Numbers">
-Go to **[https://agentclara.app/integrations/phone-numbers](https://agentclara.app/integrations/phone-numbers)**
+<Step title="Click Get a Number">
+That opens [https://agentclara.app/integrations/phone-numbers/get](https://agentclara.app/integrations/phone-numbers/get).
+
+The page says **Search and purchase phone numbers for your agents**. Additional numbers are **£1.50/month**.
 </Step>
 
-<Step title="Click 'Get New Number'">
-Pick:
-- **Country** (US, Canada, UK, etc.)
-- **Area Code** (pick the area code of your business or area)
+<Step title="Search">
+Pick a **Country**. The list includes the United Kingdom, United States, Canada, Australia, Germany, France, Spain, Italy, Netherlands, and Ireland.
 
-Click **Get Number**.
+Pick a **Number Type**. You can add an area code to see more options.
+
+**Voice** is available on the numbers you search. **SMS is only available on mobile numbers**. Local and toll-free numbers are voice-only.
+
+Click **Search Numbers**.
 </Step>
 
-<Step title="Choose Your Number">
-We'll show you available numbers in that area code. Pick one you like.
+<Step title="Buy it">
+Click **Purchase**. If the number needs a check first, the button is **Verify & Purchase**.
 
-Examples:
-- `(555) 123-4567`
-- `(555) 987-6543`
+Some numbers need an address. The form asks for **Business / Customer Name**, **Street Address**, **City**, **Region / State**, **Postal Code**, and **Country**.
 
-Click **Claim This Number**.
-</Step>
-
-<Step title="Verify & Activate">
-- Confirm the number
-- Pay the monthly fee (~$2-5/month)
-- Clara is now live on that number
-
-You can use this number immediately.
-</Step>
-
-<Step title="Tell Customers Your New Number">
-Update:
-- Your website
-- Google Business Profile
-- Social media
-- Business cards
-- Voicemail greeting
-
-Customers now call this number and talk to Clara.
+When it works, you see **Number purchased successfully!** and **Your verified number is now ready to use.**
 </Step>
 
 </Steps>
 
-## Option 2: Use Your Existing Number
+<Note>
+If you see **Phone Number Limit Reached**, the page tells you to upgrade your plan. If you see **You don't have permission to purchase phone numbers**, ask an account owner.
+</Note>
 
-If you want to keep your current business number, you can redirect it to Clara.
+## If you already have a Twilio number
 
-<Info>
-This requires coordination with your phone carrier. Have your account info ready.
-</Info>
+On **Phone Numbers**, click **From Twilio**.
 
-<Steps>
+The page says: if you already own numbers in Twilio, you can import them here and they are added to Clara.
 
-<Step title="Contact Your Carrier">
-Call or email your phone provider (Verizon, AT&T, T-Mobile, etc.)
+**From SIP Trunk** is also on that page. SIP trunk setup needs extra configuration.
 
-Tell them: "I want to forward all calls to this number: [we'll give you the forwarding number]"
+## After the number is on the list
 
-They'll set it up (usually takes 5-30 minutes).
-</Step>
+Each row can show **Voice**, **SMS**, and **WhatsApp** as yes or no.
 
-<Step title="Test It">
-Call your original number. Clara should answer.
+- **Enable SMS for outbound messages** if you want texts from that number. If SMS is off, outbound messages use the system default number.
+- **Set Outbound** or **Remove Outbound** chooses whether this number places outbound calls and SMS.
+- **Make Default** sets the default number.
 
-If it doesn't work, check with your carrier—sometimes there are delays.
-</Step>
+Inbound calls: when a customer calls one of your Clara numbers, she picks up using the call forwarding rules in **Agent** settings.
 
-<Step title="Update Your System Prompt">
-Go to **[https://agentclara.app/agent](https://agentclara.app/agent)** and tell Clara:
+Your phone type (mobile, system, or landline) is set in Agent setup. It changes how call forwarding works.
 
-> "When someone calls [Your Business Name], they're calling [Your Actual Phone Number]. Use our standard greeting and be helpful."
+## What's next
 
-This helps Clara know the context.
-</Step>
-
-</Steps>
-
-## Configure Clara for Calls
-
-Now that your number is live, teach Clara how to handle calls.
-
-<Steps>
-
-<Step title="Set a Greeting">
-Go to **[https://agentclara.app/agent](https://agentclara.app/agent)** > **Voice Configuration**
-
-Write how Clara should greet callers:
-
-**Example:**
-> "Hi, thanks for calling Beautiful Cuts Salon. How can I help you today?"
-
-**Keep it short** (under 20 seconds when spoken).
-</Step>
-
-<Step title="Define Call Capabilities">
-Tell Clara what she can do:
-
-In her **System Prompt**, add:
-> "When customers call, you can:
-> - Answer questions about hours and services
-> - Book appointments by getting their name, phone, and preferred time
-> - Collect messages for the team
-> - Transfer calls to a real person if the customer asks
-
-> Keep responses short (under 30 seconds). Speak clearly and slowly."
-</Step>
-
-<Step title="Add Business Information">
-Make sure Clara knows:
-- Your business hours (go to **Settings** > **Business Hours**)
-- Your services and prices (add to **Knowledge Base**)
-- Your policies (add to **Knowledge Base**)
-
-This way she can answer common questions without transferring.
-</Step>
-
-<Step title="Connect Your Calendar">
-If Clara will book appointments, she needs to see your availability:
-
-Go to **[https://agentclara.app/integrations](https://agentclara.app/integrations)** and connect:
-- **Google Calendar** (most common)
-- **Outlook / Microsoft 365**
-- **Calendly**
-
-She'll then show customers your real open slots.
-</Step>
-
-<Step title="Set Up Transfers">
-Decide what happens if a customer wants to talk to a human:
-
-Go to **[https://agentclara.app/agent](https://agentclara.app/agent)** > **Escalation**
-
-Set:
-- **Escalation Phone** - Where to forward urgent calls
-- **Escalation Email** - Email for forwarded issues
-- **Hours for Escalation** - When humans are available
-
-Example:
-> "If a customer asks to speak to someone, tell them 'I'll have someone call you back within 2 hours. What's your number?' Then save their request."
-</Step>
-
-</Steps>
-
-## Test Your Setup
-
-<Steps>
-
-<Step title="Call Your Number">
-From a cell phone, call your new number. Clara should answer.
-</Step>
-
-<Step title="Try These Requests">
-- "What are your hours?"
-- "Can I book an appointment?"
-- "Do you offer [your service]?"
-- "I'd like to speak to someone"
-
-If Clara answers correctly, you're good. If not, update her knowledge or system prompt.
-</Step>
-
-<Step title="Check the Transcript">
-Go to **[https://agentclara.app/chats](https://agentclara.app/chats)** and find your test call.
-
-You'll see:
-- **Transcript** - Exactly what was said
-- **Duration** - How long it lasted
-- **Recording** - You can listen to it
-
-If anything was wrong, you'll know what to fix.
-</Step>
-
-</Steps>
-
-## Voice Settings
-
-Go to **[https://agentclara.app/agent](https://agentclara.app/agent)** > **Voice Studio** to adjust:
-
-- **Voice Personality** - Professional, friendly, casual
-- **Speaking Speed** - Slow, normal, fast
-- **Accent** - Regional variations (if available)
-
-**Test each one** by calling in or using the preview button. Pick what sounds best for your business.
-
-## Recording & Consent
-
-<Warning>
-In many places, you need to tell callers that calls are being recorded. Clara does this automatically, but check your local laws.
-
-Go to **Settings** > **Compliance** to customize the disclosure message.
-</Warning>
-
-## Troubleshooting
-
-<Accordion title="I got a number but customers' calls are going to voicemail">
-  Check:
-  1. Is the number activated? (Go to integrations, it should say "Active")
-  2. Is Clara's system prompt complete? (She needs to know how to answer)
-  3. Do you have a knowledge base? (Add hours, services, etc. to Help → Knowledge)
-
-  If still broken, call it yourself to test, then email support@agentclara.ai with the number.
-</Accordion>
-
-<Accordion title="Clara sounds robotic or unclear">
-  Go to **Voice Studio** and try different voice personalities. Also check **Speaking Speed**—slow it down if she's hard to understand.
-</Accordion>
-
-<Accordion title="I want to use my old number but my carrier says they can't forward it">
-  Some carriers don't support call forwarding. Ask them about:
-  - "SIP forwarding" or "VoIP forwarding"
-  - "Call transfer" or "call routing"
-
-  If they still can't, get a new number from us and have customers call that instead.
-</Accordion>
-
-<Accordion title="Can I record outbound calls too?">
-  Yes, but you need explicit consent. Go to **Settings** > **Compliance** > **Outbound Call Recording** and enable it.
-</Accordion>
-
----
-
-## What's Next?
-
-- **Learn how Clara handles calls** - See [Call Handling](/voice-calls/call-handling)
-- **Set up voicemail transcription** - See [Voicemail](/voice-calls/voicemail)
-- **Launch outbound campaigns** - See [Outbound Campaigns](/outbound/campaigns)
-
----
+- [Call handling](/voice-calls/call-handling)
+- [SMS](/inbox-channels/sms)
+- [Voicemail](/voice-calls/voicemail)
 
 **Questions?** Email support@agentclara.ai

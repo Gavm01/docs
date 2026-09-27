@@ -1,212 +1,38 @@
 ---
-title: "API Introduction"
-description: "Build with AgentClara's REST API"
+title: "Connections"
+description: "How other tools talk to Clara"
 ---
 
-## What is the AgentClara API?
+## What you can connect
 
-The AgentClara API lets you build your own applications that work with Clara. You can:
-- **Create conversations** - Programmatically start chats
-- **Fetch contacts** - Get customer data
-- **Manage conversations** - Read, update, close conversations
-- **Track webhooks** - React to events in real-time (appointment booked, message received, etc.)
+Clara does not ask you to call a public conversations API from these docs. The screens that exist are:
 
-## REST API
+- **API Keys**, where you store a secret from another service, such as Stripe, Twilio, or Resend
+- **Webhooks**, where other tools send events into Clara, including leads
 
-AgentClara uses a **REST API**. If you know HTTP, you know how to use it.
+Open those from the links below. Both need the right permission. If you do not have it, the page says so.
 
-**Base URL:**
-```
-https://api.agentclara.app
-```
-
-**All API calls require authentication.** See [Authentication](/api-reference/authentication).
-
-## Rate Limiting
-
-- **1,000 requests per minute** per API key
-- **Burst limit:** 100 requests in 10 seconds
-
-If you exceed limits, you'll get a `429 Too Many Requests` error. Wait a moment and retry.
-
-## Response Format
-
-All API responses return **JSON**:
-
-```json
-{
-  "success": true,
-  "data": {
-    "id": "conv_123",
-    "customer_name": "John",
-    "channel": "sms"
-  }
-}
-```
-
-**Errors return:**
-
-```json
-{
-  "success": false,
-  "error": "Invalid API key"
-}
-```
-
-## HTTP Status Codes
-
-| Code | Meaning |
-|------|---------|
-| **200** | OK - Request succeeded |
-| **201** | Created - Resource created |
-| **400** | Bad Request - Missing or invalid parameters |
-| **401** | Unauthorized - Invalid/missing API key |
-| **403** | Forbidden - Insufficient permissions |
-| **404** | Not Found - Resource doesn't exist |
-| **429** | Rate Limited - Too many requests |
-| **500** | Server Error - Something went wrong |
-
-## Available Endpoints
-
-<CardGroup cols={3}>
-  <Card title="Conversations" icon="message-square" href="/api-reference/endpoint/conversations">
-    Read, create, update conversations
-  </Card>
-  <Card title="Contacts" icon="users" href="/api-reference/endpoint/contacts">
-    Fetch and manage customer contacts
+<CardGroup cols={2}>
+  <Card title="API keys" icon="key" href="/api-reference/authentication">
+    Store a secret from another service. Clara keeps it encrypted.
   </Card>
   <Card title="Webhooks" icon="webhook" href="/api-reference/endpoint/webhooks">
-    Subscribe to real-time events
+    Receive events and leads from tools you already use.
   </Card>
 </CardGroup>
 
-## Getting Started
+## Where they sit in the app
 
-### 1. Get Your API Key
+**API Keys:** [https://agentclara.app/settings/advanced/api-keys](https://agentclara.app/settings/advanced/api-keys)
 
-Go to **[https://agentclara.app/settings/advanced](https://agentclara.app/settings/advanced)** > **API Keys**
+**Webhooks:** [https://agentclara.app/settings/advanced/webhooks](https://agentclara.app/settings/advanced/webhooks)
 
-Click **"Create New Key"** and copy it.
+Workspace Settings also has **Advanced Settings** under **Developer Tools**. That item is for admins.
 
-**Keep it secret.** Don't share it publicly.
+## What's next
 
-### 2. Make Your First Call
-
-Replace `YOUR_API_KEY` with your actual key:
-
-```bash
-curl -X GET "https://api.agentclara.app/conversations" \
-  -H "Authorization: Bearer YOUR_API_KEY"
-```
-
-You should get back a list of your conversations.
-
-### 3. Read the Docs
-
-Each endpoint has:
-- **Description** - What it does
-- **Parameters** - What to send
-- **Response** - What you get back
-- **Examples** - Code samples
-
-## Webhook Events
-
-Webhooks notify your app when events happen:
-
-**Available events:**
-- `conversation.created` - New conversation started
-- `conversation.updated` - Conversation data changed
-- `message.received` - New message arrived
-- `appointment.booked` - Clara booked an appointment
-- `conversation.closed` - Conversation marked resolved
-
-See [Webhooks](/api-reference/endpoint/webhooks) for setup.
-
-## SDKs & Libraries
-
-We provide:
-- **JavaScript/TypeScript SDK** - For Node.js and browser
-- **Python SDK** - For Python applications
-- **REST API** - For any language
-
-Most developers use the REST API directly (it's straightforward).
-
-## Common Use Cases
-
-### Use Case 1: Sync Contacts to Your CRM
-
-1. Call **GET /contacts** to get all your customers
-2. Loop through and sync to your CRM (HubSpot, Salesforce, etc.)
-3. Run this daily to keep data fresh
-
-### Use Case 2: Create a Custom Dashboard
-
-1. Call **GET /conversations** every minute
-2. Extract metrics (new conversations, appointment rate)
-3. Display in your custom dashboard
-
-### Use Case 3: React to Bookings
-
-1. Set up a webhook for `appointment.booked`
-2. When an appointment is booked, your app:
-   - Sends a confirmation email
-   - Adds it to your accounting system
-   - Notifies your team
-
-### Use Case 4: Build a Mobile App
-
-1. Use the API to fetch your customer conversations
-2. Display them in a mobile interface
-3. Send replies back through the API
-
-## Environments
-
-**Production:**
-```
-https://api.agentclara.app
-```
-
-**Testing/Sandbox:**
-Not available. We recommend testing against production (you can use test data).
-
-## Errors & Troubleshooting
-
-**"401 Unauthorized"**
-- API key is invalid or expired
-- Missing `Authorization` header
-- Check your key at **Settings** > **Advanced**
-
-**"429 Too Many Requests"**
-- You're making too many requests per minute
-- Back off and retry with exponential backoff
-
-**"404 Not Found"**
-- The resource doesn't exist
-- Check the conversation/contact ID is correct
-
-**"500 Server Error"**
-- Something went wrong on our end
-- Try again in a few seconds
-- Email support@agentclara.ai if it persists
-
-## Support
-
-**API questions?** Email support@agentclara.ai
-
-**Technical issues?** Include:
-- Your API key (first 8 characters, redact the rest)
-- The exact API call you made
-- The error message
-- Timestamp when it happened
-
----
-
-## Next Steps
-
-1. **Get your API key** - See [Authentication](/api-reference/authentication)
-2. **Read conversation docs** - See [Conversations](/api-reference/endpoint/conversations)
-3. **Set up webhooks** - See [Webhooks](/api-reference/endpoint/webhooks)
-
----
+- [API keys](/api-reference/authentication)
+- [Webhooks](/api-reference/endpoint/webhooks)
+- [Lead webhooks](/outbound/lead-webhooks)
 
 **Questions?** Email support@agentclara.ai
