@@ -70,7 +70,7 @@ If you have no subdomain yet, the label is **Claim your subdomain**. Type a name
 
 If the name is too short, you see **Must be at least 3 characters**. If it is too long, you see **Must be 30 characters or fewer**. For any other name the box will not take, you see **Lowercase letters, numbers, and hyphens only**. A hyphen at the start or the end gets that same message.
 
-The box checks availability as you type. **Checking...** means wait. When the name is free, that line turns green.
+The box checks availability as you type. While it looks, the line says **Checking...**. If the check fails, you see **Could not check availability**. If you type the address you already have, you see **This is your current subdomain**. When the name is free, that line is green.
 </Step>
 
 <Step title="Claim it">
@@ -87,7 +87,7 @@ To change it, use **Change subdomain** and confirm **Change your subdomain?**
 
 The confirm box says **Your new subdomain will be** the new name, plus `.agentclara.app`. Then **Your old subdomain will redirect to the new one for 30 days, then stop working. You won't be able to change again for 30 days.**
 
-While that wait is on, the page says **You can change this in** the number of days left.
+While that wait is on, the page says **You can change this in** the number of days left, then **day** or **days**. If a save is blocked, you see **Change blocked by 30-day limit** or **Could not save subdomain**.
 
 ### Your own domain
 
@@ -98,11 +98,13 @@ Further down, **Custom domain** lets clients use an address you already own, suc
 <Step title="Add the domain">
 Under **Add a custom domain**, type the domain and click **Add domain**.
 
-You should see **Domain added. Follow the DNS instructions below.** If it is taken, reserved, or typed wrong, the message under the box says so.
+You should see **Domain added. Follow the DNS instructions below.** While you type, the line can say **Checking...**, **Domain is available**, **Already claimed**, **Reserved domain**, **Invalid domain format**, or **Not available**. If the check fails, you see **Could not check availability**.
+
+If adding it fails, you see one of these: **Enter a valid domain like example.com. Lowercase letters, numbers, hyphens, and dots only.** **This domain is already claimed.** **This domain is reserved and cannot be used.** **Too many requests. Please try again in a few minutes.** **This domain is already attached to another Vercel project. Contact support.** **We couldn't reach our domain provider right now. Please try again in a few minutes.** **Something went wrong. Please try again or contact support.**
 </Step>
 
 <Step title="Prove you own it">
-While the status is waiting on DNS, add the TXT record the page shows.
+While the status badge says **pending_dns**, add the TXT record the page shows.
 
 - **Type** is TXT
 - **Host** looks like `_vercel.portal.youragency.com`
@@ -118,9 +120,9 @@ After ownership is verified, the page asks for a CNAME record.
 - **Name** is your domain
 - **Value** is the target shown on the page (`cname.vercel-dns.com.`)
 
-Then you will see **DNS is configured. We're setting up your SSL certificate. This usually takes 1–5 minutes.**
+The badge then says **verifying**, then **ssl_pending**. You will see **DNS is configured. We're setting up your SSL certificate. This usually takes 1–5 minutes.**
 
-When it is live, the domain is linked. Open it from the page to check.
+When the badge says **live**, open the domain from the page to check. If setup fails, the badge says **failed**.
 </Step>
 
 </Steps>
@@ -129,7 +131,7 @@ Click **Refresh status** if it seems stuck. If setup fails, the page shows the e
 
 Click **Remove domain** and the page asks **Remove this domain? You will need to re-verify DNS records to use it again.**
 
-If you changed domains recently, you may have to wait before adding another. The error tells you when the wait ends.
+If you changed domains recently, you see **You changed domains recently. Please wait before adding a new one.** If a time is included, the line is **You changed domains recently. Please wait until** that time **before adding a new one.**
 
 ### Email and the login screen
 
