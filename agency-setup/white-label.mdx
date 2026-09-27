@@ -1,163 +1,174 @@
 ---
 title: "White-Label"
-description: "Make AgentClara look like your product"
+description: "Put your agency name, logo, and web address on the client portal"
 ---
 
-## White-Label AgentClara
+## What white-label changes
 
-White-labeling means your clients think they're using **your** product, not ours. They see your logo, your colors, your branding everywhere.
+Clients log in to a portal with your agency name on it. You set the logo, the brand color, the web address, the login line, and the name on emails you send from that portal.
 
-This is great for:
-- **Resellers** - Sell AgentClara as your own service
-- **Agencies** - Keep your brand consistent
-- **Enterprise Clients** - Internal tools with your company colors
+Open **Agency → Settings**. Only the agency owner can open this page. Everyone else sees **You don't have access to agency settings.**
 
-## What You Can Customize
+The page is **Agency Settings**. The line under the title is **Manage your agency configuration, branding, settings, and integrations.**
 
-<CardGroup cols={2}>
-  <Card title="Logo" icon="image">
-    Your company logo in the top left
-  </Card>
-  <Card title="Colors" icon="palette">
-    Primary color, accent colors, dark mode
-  </Card>
-  <Card title="Company Name" icon="building">
-    Appears in headers, emails, and links
-  </Card>
-  <Card title="Support Email" icon="envelope">
-    Who to email for help (your address, not ours)
-  </Card>
-  <Card title="Domain" icon="globe">
-    Run it on your own domain (agentclara.app → yourcompany.com)
-  </Card>
-  <Card title="Help Links" icon="link">
-    Link to your docs, not ours
-  </Card>
-</CardGroup>
+There are five tabs: **Profile**, **Billing**, **Client Defaults**, **White-Label**, and **Danger Zone**.
 
-## How to Set It Up
+## Profile
+
+The **Profile** tab is **Profile Settings**.
 
 <Steps>
 
-<Step title="Go to Master Account Settings">
-Go to **[https://agentclara.app/master/accounts](https://agentclara.app/master/accounts)** and look for **White-Label Settings**.
-
-(This only shows if you're an agency owner.)
+<Step title="Agency display name">
+This is the name clients see. The box says **Agency display name**. Example: Acme Marketing Agency.
 </Step>
 
-<Step title="Upload Your Logo">
-Click **Upload Logo** and pick your company logo (PNG or SVG).
-
-This appears in the top left and in emails.
+<Step title="Contact email">
+**Contact email** is how clients reach your agency.
 </Step>
 
-<Step title="Pick Your Colors">
-- **Primary Color** - Your main brand color (appears in buttons, links, highlights)
-- **Accent Color** - Secondary color (hover states, highlights)
-- **Dark Mode** - Dark version of your colors for night mode
-
-If you don't know your brand colors, ask your designer or marketer.
+<Step title="Support phone">
+**Support phone (optional)** uses UK format unless you change it.
 </Step>
 
-<Step title="Update Company Name">
-Change "AgentClara" to your company name. This appears:
-- In the header
-- In emails
-- In settings pages
-- In support links
+<Step title="Timezone">
+Set **Timezone** so dates and sending times match your agency.
 </Step>
 
-<Step title="Set Support Email">
-When customers or clients need help, they should email **you**, not us.
-
-Enter your support email:
-- `support@yourcompany.com`
-- `help@yourcompany.com`
-- Etc.
-
-This email appears in error messages, help links, and support buttons.
+<Step title="Brand primary color">
+**Brand primary color** is a color picker plus a hex value, such as `#4F46E5`.
 </Step>
 
-<Step title="(Optional) Custom Domain">
-This is for advanced agencies. You can run AgentClara on your own domain:
+<Step title="Agency logo">
+Under **Agency logo**, drop an image or click to upload.
 
-Instead of `agentclara.app`, your clients access `yourcompany.com`
+Use PNG or JPG, max 2MB. A 400×400 square looks best. If the file is the wrong type, you will see **Only PNG and JPG files are supported**. If it is too big, you will see **File too large. Max 2MB.**
 
-**How:**
-1. Contact support@agentclara.ai
-2. We'll set up a custom domain for you
-3. Your clients see only your branding
-
-(This requires a paid plan.)
-</Step>
-
-<Step title="Save and Test">
-Click **Save**. Your branding now appears across the platform.
-
-Open an incognito window and test it to see what your clients see.
+You can **Remove logo** later.
 </Step>
 
 </Steps>
 
-## What Your Clients See
+**Email signature preview** shows a sample **Book appointment** button and the line **Powered by AgentClara**. Click **Save** when the preview looks right. You should see **Saved successfully**.
 
-When a client logs in, they'll see:
-- ✅ Your logo in the top left
-- ✅ Your company colors everywhere
-- ✅ Your support email in help sections
-- ✅ Your company name in the header
-- ✅ Links to your documentation (not ours)
+If the page says **Your agency is not yet provisioned. Contact support.**, email support@agentclara.ai before you keep going.
 
-They won't see anything about "AgentClara."
+## White-label address
 
-## Per-Client Branding (Advanced)
+Open the **White-Label** tab.
 
-If you want **different branding for each client**, you can set it:
+### Subdomain
 
-1. Switch to a specific sub-account
-2. Go to **Settings** > **Branding**
-3. Set their specific logo, colors, and name
-4. Save
+The heading is **White-label subdomain**. Clients can use an address like `yourname.agentclara.app`.
 
-That client sees their own branding, not the agency branding.
+<Steps>
 
-## Email Templates
+<Step title="Choose a name">
+If you have no subdomain yet, the label is **Claim your subdomain**. Type a name such as `growthagency`. The screen adds `.agentclara.app`.
 
-When Clara sends appointment reminders or follow-ups, they come with your branding:
-- Your company name in the greeting
-- Your support email in the footer
-- Your colors (optional)
+Use 3 to 30 characters. Lowercase letters, numbers, and hyphens only. It has to start and end with a letter or number.
 
-You can customize email templates in **Settings** > **Templates**.
+The box checks availability as you type. **Checking...** means wait. Green means it is free.
+</Step>
 
-## Troubleshooting
+<Step title="Claim it">
+Click **Claim subdomain**. Confirm **Claim this subdomain?**
 
-<Accordion title="My logo looks blurry on the dashboard">
-  Use a high-resolution logo (at least 200x200 pixels). SVG files work best.
+The first claim can be changed later, with no waiting period. Click **Claim**.
+</Step>
+
+</Steps>
+
+**Current subdomain** shows the live address, such as `growthagency.agentclara.app`.
+
+To change it, use **Change subdomain** and confirm **Change your subdomain?**
+
+- The new address becomes the live one.
+- The old address redirects to the new one for 30 days, then stops.
+- You cannot change it again for 30 days. The screen tells you how many days are left.
+
+### Your own domain
+
+Further down, **Custom domain** lets clients use an address you already own, such as `portal.youragency.com`.
+
+<Steps>
+
+<Step title="Add the domain">
+Under **Add a custom domain**, type the domain and click **Add domain**.
+
+You should see **Domain added. Follow the DNS instructions below.** If it is taken, reserved, or typed wrong, the message under the box says so.
+</Step>
+
+<Step title="Prove you own it">
+While the status is waiting on DNS, add the TXT record the page shows.
+
+- **Type** is TXT
+- **Host** looks like `_vercel.portal.youragency.com`
+- **Value** is the token on the page
+
+Some DNS providers want the host without your domain, so you enter `_vercel` instead of `_vercel.portal.youragency.com`. Use the format your provider asks for.
+</Step>
+
+<Step title="Point the domain">
+After ownership is verified, the page asks for a CNAME record.
+
+- **Type** is CNAME
+- **Name** is your domain
+- **Value** is the target shown on the page (`cname.vercel-dns.com.`)
+
+Then you will see **DNS is configured. We're setting up your SSL certificate. This usually takes 1–5 minutes.**
+
+When it is live, the domain is linked. Open it from the page to check.
+</Step>
+
+</Steps>
+
+Click **Refresh status** if it seems stuck. If setup fails, the page shows the error. Click **Remove domain** and add it again.
+
+Removing a domain disconnects it. Clients can no longer use that address. That cannot be undone.
+
+If you changed domains recently, you may have to wait before adding another. The error tells you when the wait ends.
+
+### Email and the login screen
+
+On the same **White-Label** tab, **Email & login branding** is how emails and the login screen appear to your clients.
+
+- **Email sender name** — the From name on emails sent from your subdomain. Example: Your Agency Name. Max 60 characters. Leave it blank to use the platform default.
+- **Reply-to email** — where replies go. Example: support@youragency.com. Leave it blank to use the platform default.
+- **Login screen subtitle** — a short line under your logo on the login page. Example: Welcome to our client portal. Max 120 characters. Optional.
+
+Click **Save brand settings**. You should see **Brand settings saved**.
+
+## What clients see
+
+- Your logo and brand color from **Profile**
+- Your display name
+- Your subdomain, or your custom domain once DNS is live
+- Your login subtitle, if you set one
+- Your sender name and reply-to address on emails from that portal
+
+The email signature preview still includes **Powered by AgentClara**.
+
+## If something goes wrong
+
+<Accordion title="I cannot open Agency Settings">
+  Settings is for the agency owner. The page says **Only agency owners can access these settings.**
 </Accordion>
 
-<Accordion title="The colors look different on dark mode">
-  You can set different colors for light and dark mode. In White-Label Settings, toggle "Dark Mode" and set the colors separately.
+<Accordion title="The logo looks soft">
+  Upload a 400×400 square PNG or JPG. The page warns you when the image is the wrong shape.
 </Accordion>
 
-<Accordion title="I want to use my domain but don't know how">
-  Email support@agentclara.ai and mention "custom domain." We'll walk you through it.
+<Accordion title="My subdomain says it is already in use">
+  Pick another name. You will see **That subdomain is already in use**.
 </Accordion>
 
-<Accordion title="Can each of my clients have their own branding?">
-  Yes! Switch to a sub-account and go to **Settings** > **Branding**. You can set branding per client.
+<Accordion title="I claimed a subdomain and now I want a different one">
+  Use **Change subdomain**. After a change, wait 30 days before changing it again. The old address keeps redirecting for those 30 days.
 </Accordion>
 
----
+## What's next
 
-## What's Next?
-
-- **Set up billing** - Charge clients for their usage
-- **Manage users** - Control who can do what
-- **Check analytics** - See how your clients are doing
-
-See [Billing](/agency-setup/billing).
-
----
+Connect payouts in [Billing](/agency-setup/billing).
 
 **Questions?** Email support@agentclara.ai

@@ -1,174 +1,149 @@
 ---
-title: "Billing & Pricing"
-description: "Understand how usage is tracked and billed"
+title: "Billing"
+description: "See your plan, your clients' plans, and the commission you earn"
 ---
 
-## How AgentClara Billing Works
+## How agency billing works
 
-You pay based on what your clients **use**, not a fixed monthly fee.
+Your clients pay for their own plan. You earn a commission when they are invoiced.
 
-**Key concept:** Clara's work is measured in **interactions**. An interaction is one customer message + one Clara response.
+You also have an agency subscription of your own. Cancelling that subscription does not cancel your clients. They keep their plans.
 
-## What Counts as an Interaction?
+Money is shown in pounds (£).
 
-<CardGroup cols={2}>
-  <Card title="Conversation" icon="chat">
-    Customer sends message → Clara responds = 1 interaction
-  </Card>
-  <Card title="Voice Call" icon="phone">
-    Customer calls → Clara answers = 1 interaction
-  </Card>
-  <Card title="Appointment Booking" icon="calendar">
-    Customer schedules time → Clara confirms = 1 interaction
-  </Card>
-  <Card title="Follow-up" icon="bell">
-    Clara sends automated reminder = 1 interaction
-  </Card>
-</CardGroup>
+## Your subscription
 
-**One message back-and-forth = 1 interaction.**
+Go to **Agency → Settings → Billing**. The first card is **Your Subscription**.
 
-## See Your Usage
+You will see:
 
-Go to **[https://agentclara.app/master/billing](https://agentclara.app/master/billing)** to see:
+- **Plan** — Starter, Growth, Scale, or Enterprise
+- **Status** — Active, Trial, Canceled, or Suspended
+- If you are on a trial, how many days are left. The card says **Free trial ends today** or **Free trial ended** when that is the case.
 
-- **Interactions This Month** - How many conversations/calls you've had
-- **Cost Per Interaction** - What you're paying per conversation
-- **Total Cost** - What you owe this month
-- **Per-Client Breakdown** - How much each client is using
+If nothing is on file, you will see **No active subscription on file. Contact support if this is unexpected.**
 
-## Pricing Tiers
+## What you charge a client
 
-Pricing depends on your plan. Common tiers:
+You choose this when you invite them. See [Adding Clients](/agency-setup/adding-clients).
 
-| Plan | Cost Per Interaction | Best For |
-|------|----------------------|----------|
-| Starter | $0.50 | Just starting out (up to 1,000 interactions/month) |
-| Pro | $0.35 | Growing business (up to 10,000 interactions/month) |
-| Enterprise | Custom | Large agencies or high volume |
+- **Client Plan** — Starter, Growth, Scale, or Enterprise
+- **Setup Fee (£)** — a one-time fee at onboarding, or `0` for none
+- **Trial Period (days)** — `0` to 365. `0` means billing starts as soon as setup is done.
+- **Require card at trial start** — they either enter a card now, or they stay on a free trial until they choose to pay
 
-(These are example prices. Check your account for exact pricing.)
+The plan on the form starts from **Agency → Settings → Client Defaults**. On that tab you can also set:
 
-## Agency Billing Model
+- **Default max agents** — empty means no cap. A number overrides the plan limit for that client.
+- **Default max calls per month** — empty means no cap. A number is applied when you send the invite.
 
-As an agency, you:
-1. **Get billed by AgentClara** for total usage across all clients
-2. **Charge your clients** whatever you want
-3. **Keep the difference** as profit
+A single invite can override those defaults.
 
-**Example:**
-- You have 3 clients
-- Client A uses 500 interactions/month
-- Client B uses 300 interactions/month
-- Client C uses 1,200 interactions/month
-- **Total: 2,000 interactions**
+## Commission
 
-**Your cost:** 2,000 × $0.35 = **$700**
+You start earning when a client is invoiced. Until then, commission history says **No commissions yet. You will start earning when your clients are invoiced.**
 
-**What you can charge:**
-- Client A: $250 (markup)
-- Client B: $150 (markup)
-- Client C: $600 (markup)
-- **Your revenue: $1,000**
-- **Your profit: $300**
+### On Clients
 
-You set the pricing for each client.
+**Agency → Clients** shows four numbers:
 
-## Track Usage Per Client
+- **Total Clients**, with your cap beside the number (it reads like `/ 50 max`)
+- **Total Earned**
+- **Pending Earnings**
+- **Stripe Payouts** — **Active**, or a button to finish Stripe
 
-Go to **[https://agentclara.app/master/billing](https://agentclara.app/master/billing)** > **Per-Client Breakdown**
+### On Home
 
-See exactly how many interactions each client is using. Use this to:
-- Invoice clients accurately
-- Identify which clients are your heavy users
-- Plan capacity
+**Agency → Home** shows **MRR** (monthly recurring revenue), **Pending payout**, and **Commission this month**.
 
-## Set Limits Per Client
+### On a client
 
-To prevent surprises, you can set a **max interactions** for each client:
+Open the client from **Action items** on **Home**. The **Billing** card shows **Commission this month**, **Lifetime commission**, and **Last paid**.
 
-1. Go to **[https://agentclara.app/master/accounts](https://agentclara.app/master/accounts)**
-2. Click on a client
-3. Go to **Settings** > **Plan & Limits**
-4. Set **Max Monthly Interactions**
+### On Revenue
 
-If they hit the limit, they'll get a warning. They can request more, and you can approve it.
+Go to **Agency → Revenue**, or [https://agentclara.app/agency/revenue](https://agentclara.app/agency/revenue).
 
-## Payment Methods
+The page is **Revenue**. The line under it is **Your commissions, payouts, and revenue history**.
 
-**How you pay us:**
-- **Credit card** - Billed automatically each month
-- **Bank transfer** - For enterprise customers (contact sales)
-- **Invoice** - For large organizations
+- **Commission this month**
+- **Last month**
+- **Year to date**
+- **Last paid out** — or **Not yet paid out**
+- **Revenue trend**
+- **Top clients** — switch between **This month** and **Lifetime**
+- **Payout history**
+- **Commission history** — date, client, gross, commission, and status. Filter it, then **Export CSV**.
 
-Go to **Settings** > **Billing** to update your payment method.
+### On Settings → Billing
 
-## Invoices & Receipts
+Under **Commission Summary**:
 
-At the end of each month, you'll get an invoice showing:
-- Total interactions across all clients
-- Total cost
-- Line items (broken down by client if you have multiple)
+- **Earned this month**
+- **Total paid to date**
+- **Last payout** — or **No payouts yet**
+- **Estimated next payout** — or **No pending earnings**
 
-Download it in **Settings** > **Invoices**.
+**Commission History** is a table: **Client**, **Invoice amount**, **Rate**, **Commission**, **Status**, and **Date**.
 
-## Overage Charges
+Statuses are **Pending**, **Batched**, **Paid**, **Refunded**, and **Failed**. A client who has left can be tagged **(churned)**.
 
-If a client exceeds their plan limit:
-- Clara keeps working
-- The overage is charged at your plan rate
-- You'll see it on next month's bill
+Filter with **Filter by status**.
 
-**Example:** Client is on "1,000 interactions/month" plan, uses 1,500 interactions
-- Base: 1,000 interactions = $350
-- Overage: 500 interactions = $175
-- Total: $525
+## Get paid
 
-## Common Questions
+Commission is paid to a Stripe account that you connect.
 
-<Accordion title="How do I charge my clients?">
-That's up to you. Common approaches:
-- **Flat monthly fee** - "You pay $500/month for up to 2,000 interactions"
-- **Per-interaction markup** - "You pay $0.75 per interaction (we pay $0.35)"
-- **Tiered** - Different prices for different volume levels
+<Steps>
 
-Most agencies use a flat monthly fee so clients have predictable costs.
+<Step title="Open payouts">
+Go to **Agency → Settings → Billing**. Find **Payout Account (Stripe)**.
+</Step>
+
+<Step title="Connect Stripe">
+Click **Connect Stripe**.
+
+The status moves through **Pending verification** (Stripe usually takes a few minutes), then **Connected** and **Ready to receive payouts.**
+</Step>
+
+<Step title="Wait for the payout">
+Payouts are monthly. **Payout history** on **Revenue** says your first payout lands on the 1st of the next month after you have earned at least £20.
+
+If Stripe is not connected, that section says **Connect your Stripe account to start receiving monthly payouts.**
+</Step>
+
+</Steps>
+
+If the connection fails, click **Retry**. If it later says **Account disconnected**, click **Reconnect**.
+
+## Cancel your agency subscription
+
+This is on **Agency → Settings → Danger Zone**.
+
+**Cancel subscription** cancels your agency workspace subscription only. Your clients keep their own subscriptions. You keep access until the end of the current billing period.
+
+If there is nothing to cancel, you will see **No active subscription**. If it is already cancelled, the page tells you the date you keep access until.
+
+## If something goes wrong
+
+<Accordion title="I invited a client and commission is still empty">
+  Commission appears when that client is invoiced. A trial with no invoice yet does not create a row.
 </Accordion>
 
-<Accordion title="What if a client doesn't use their full allotment?">
-Unused interactions don't carry over. Each month resets. This encourages clients to use Clara—they've already paid for it.
+<Accordion title="Stripe says Pending verification">
+  Wait a few minutes. The card says Stripe is reviewing your account. If it fails, click **Retry**.
 </Accordion>
 
-<Accordion title="Can I change a client's plan?">
-Yes. Go to **Master** > **Accounts**, find the client, and click **Edit Plan**. Choose a new plan. The change applies next billing cycle.
+<Accordion title="I have earnings but no payout">
+  The first payout waits until you have earned at least £20, then pays on the 1st of the next month. Stripe also has to be **Connected**.
 </Accordion>
 
-<Accordion title="What if a client wants to pause for a month?">
-You can pause their account temporarily. Go to **Master** > **Accounts**, find them, and click **Pause**. No charges while paused.
+<Accordion title="A client payment failed">
+  **Home → Action items** shows **Payment failing** or **In grace period**, with **Send payment reminder** or **Review grace period** as the suggested step. Open the client from that list.
 </Accordion>
 
-<Accordion title="How do I get on a higher tier?">
-Contact sales@agentclara.ai and tell them your expected volume. They'll set you up with the right plan and pricing.
-</Accordion>
+## What's next
 
-## Free Trial
+Invite the next client in [Adding Clients](/agency-setup/adding-clients).
 
-New accounts get a **30-day free trial**:
-- All features included
-- Up to 500 interactions free
-- No credit card required
-
-After 30 days, you'll need to enter a payment method to keep using the platform.
-
----
-
-## Next Steps
-
-- **Set up per-client limits** - Prevent surprise overages
-- **Create an invoice template** - If you bill clients separately
-- **Monitor usage** - Check the billing dashboard weekly to catch unusual spikes
-
----
-
-**Questions about pricing?** Email sales@agentclara.ai
-**Issues with billing?** Email support@agentclara.ai
+**Questions about a payout?** Email support@agentclara.ai
