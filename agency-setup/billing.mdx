@@ -19,7 +19,7 @@ You will see:
 
 - **Plan** — Starter, Growth, Scale, or Enterprise
 - **Status** — Active, Trial, Canceled, or Suspended
-- If you are on a trial, how many days are left. The card says **Free trial ends today** or **Free trial ended** when that is the case.
+- If you are on a trial, the card says **Free trial ends in** the number of days left, then **days**. On the last day it says **Free trial ends today**. After that it says **Free trial ended**.
 
 If nothing is on file, you will see **No active subscription on file. Contact support if this is unexpected.**
 
@@ -29,13 +29,13 @@ You choose this when you invite them. See [Adding Clients](/agency-setup/adding-
 
 - **Client Plan** — Starter, Growth, Scale, or Enterprise
 - **Setup Fee (£)** — a one-time fee at onboarding, or `0` for none
-- **Trial Period (days)** — `0` to 365. `0` means billing starts as soon as setup is done.
-- **Require card at trial start** — they either enter a card now, or they stay on a free trial until they choose to pay
+- **Trial Period (days)** — the helper says **Days before monthly billing starts. 0 = billing starts immediately after setup.** The box allows 0 to 365.
+- **Require card at trial start** — **If enabled, client enters payment details at signup. Trial converts to paid automatically at trial end. If disabled, client uses trial free and must actively upgrade to continue.**
 
 The plan on the form starts from **Agency → Settings → Client Defaults**. On that tab you can also set:
 
-- **Default max agents** — empty means no cap. A number overrides the plan limit for that client.
-- **Default max calls per month** — empty means no cap. A number is applied when you send the invite.
+- **Default max agents** — the placeholder is **Leave empty for no cap**. Under it: **Empty = no per-client cap. Integer = enforced per-client cap (overrides the plan limit).**
+- **Default max calls per month** — **Empty = no per-client cap. Integer = cap applied at invite time.**
 
 A single invite can override those defaults.
 
@@ -47,7 +47,7 @@ You start earning when a client is invoiced. Until then, commission history says
 
 **Agency → Clients** shows four numbers:
 
-- **Total Clients**, with your cap beside the number (it reads like `/ 50 max`)
+- **Total Clients**, with your cap beside the number. It reads `/` then your maximum, then `max`.
 - **Total Earned**
 - **Pending Earnings**
 - **Stripe Payouts** — **Active**, or a button to finish Stripe
@@ -107,7 +107,7 @@ The status moves through **Pending verification** (Stripe usually takes a few mi
 </Step>
 
 <Step title="Wait for the payout">
-Payouts are monthly. **Payout history** on **Revenue** says your first payout lands on the 1st of the next month after you have earned at least £20.
+Payouts are monthly. If nothing has been paid yet, **Payout history** on **Revenue** says **No payouts yet. Your first payout will land on the 1st of next month after you've earned at least £20.**
 
 If Stripe is not connected, that section says **Connect your Stripe account to start receiving monthly payouts.**
 </Step>
@@ -135,7 +135,7 @@ If there is nothing to cancel, you will see **No active subscription**. If it is
 </Accordion>
 
 <Accordion title="I have earnings but no payout">
-  The first payout waits until you have earned at least £20, then pays on the 1st of the next month. Stripe also has to be **Connected**.
+  If nothing has been paid yet, the page says **No payouts yet. Your first payout will land on the 1st of next month after you've earned at least £20.** Stripe also has to be **Connected**.
 </Accordion>
 
 <Accordion title="A client payment failed">

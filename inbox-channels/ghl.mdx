@@ -5,39 +5,41 @@ description: "Sync GoHighLevel contacts and appointments into Clara"
 
 ## What this connection does
 
-GoHighLevel syncs contacts and appointments so Clara stays in line with your pipeline.
+The card says **Sync contacts and appointments from GoHighLevel so Clara stays in sync with your pipeline.**
 
-It can sync **Contacts**, **Opportunities**, **Appointments**, and **Tags**. It works with the **Inbox**, **Contacts**, and appointments.
+It syncs **Contacts**, **Opportunities**, **Appointments**, and **Tags**. It works with **Inbox**, **Contacts**, and **Appointments**.
 
 ## Connect it
 
-Open **Integrations** and choose GoHighLevel. Then:
+Open **Integrations** and choose **GoHighLevel**. Open **Quick Setup Guide**. The steps on the page are:
 
 <Steps>
 
 <Step title="Copy the Location ID">
-Log in to GoHighLevel at [https://app.gohighlevel.com](https://app.gohighlevel.com).
+Log in to GoHighLevel at app.gohighlevel.com.
 
-Go to **Settings**, then **Business Profile**.
+Go to **Settings → Business Profile**.
 
-Copy your **Location ID** from the URL. It is the text after `/location/`.
-
-In Clara, the field is **Location ID**. The hint says you can also find it under **Settings**, then **Business Info**, then **Location ID**.
+Copy your **Location ID** from the URL (the string after `/location/`).
 </Step>
 
 <Step title="Create an API key">
-In GoHighLevel, go to **Settings**, then **API Keys**.
+Go to **Settings → API Keys**.
 
-Create an API key and copy it.
+Click **Create API Key** and give it a name. Copy your API Key.
 </Step>
 
 <Step title="Paste both and connect">
-Paste the **Location ID** and the API key into Clara, then click **Connect**.
+Paste the **Location ID** and API Key below, then click **Connect**.
 </Step>
 
 </Steps>
 
-There is also an optional **Calendar ID** field.
+The **Location ID** box says **Your GHL Location ID (sub-account). Found in Settings → Business Info → Location ID.**
+
+**Calendar ID** says **The specific GHL Calendar to use for appointment sync. Found in Calendars → Settings → Calendar ID. Required for sync_appointment_to_crm workflow action.**
+
+**Sync opportunities** says **Keep pipeline opportunities synchronized**.
 
 When it works, the hub can show the connection as verified. **Sync started** means a sync is running. **Sync failed** means try again from the same card.
 

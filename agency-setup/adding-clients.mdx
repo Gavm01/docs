@@ -36,18 +36,15 @@ They receive an email link to set up their account.
 <Step title="Set the setup fee and trial">
 **Setup Fee (£)** is a one-time fee charged at onboarding. Leave it at `0` for no fee.
 
-**Trial Period (days)** is how many days they get before monthly billing starts. `0` means billing starts as soon as setup is done. The maximum is 365 days.
+**Trial Period (days)** — the helper says **Days before monthly billing starts. 0 = billing starts immediately after setup.** The box allows 0 to 365.
 
-**Require card at trial start** is optional.
-
-- Turn it on and they enter payment details at signup. The trial becomes a paid plan on its own when the trial ends.
-- Leave it off and the trial is free. They have to choose a paid plan themselves to keep going.
+**Require card at trial start**. The helper says **If enabled, client enters payment details at signup. Trial converts to paid automatically at trial end. If disabled, client uses trial free and must actively upgrade to continue.**
 </Step>
 
 <Step title="Send the invite">
 Click **Send Invite**.
 
-You should see **Invite sent**. The list then shows that client as **Pending**. Under the name it says **Awaiting** and their email address.
+You should see **Invite sent**, then **Invitation sent to** their email. The list then shows that client as **Pending**. Under the name it says **Awaiting** and their email address.
 </Step>
 
 </Steps>
@@ -60,7 +57,7 @@ This invite is for a client business. To add someone who works at your agency, u
 
 A pending client is faded, with a yellow dot and a **Pending** badge.
 
-Click **Resend Invite** if they did not get the email. You should see **Invite resent!**
+Click **Resend Invite** if they did not get the email. You should see **Invite resent!** Under it: **A new invite email has been sent to your client.** If the email still does not go out, you see **Email not sent** and **The invite is still there, but the email did not go out. Try Resend again.**
 
 When they accept, the row is no longer faded. A green dot means the status is active. A blue dot means the status is trial. Under the name, the app shows the plan tier, a dot, and the status. On the right it shows the tier plan and **Since** the date they joined.
 
@@ -71,8 +68,8 @@ Go to **Agency → Settings → Client Defaults**.
 These values are applied to new invites. Anything you type on a single invite overrides them.
 
 - **Default plan tier** — Starter, Growth, Scale, or Enterprise
-- **Default max agents** — leave empty for no cap. A number is a per-client cap and overrides the plan limit.
-- **Default max calls per month** — leave empty for no cap. A number is applied when you send the invite.
+- **Default max agents** — the placeholder is **Leave empty for no cap**. Under it: **Empty = no per-client cap. Integer = enforced per-client cap (overrides the plan limit).**
+- **Default max calls per month** — **Empty = no per-client cap. Integer = cap applied at invite time.**
 
 Click **Save**. You should see **Defaults saved**.
 
@@ -93,11 +90,11 @@ Health also shows as a badge on the **Clients** list. Hover it to see the reason
 ## If something goes wrong
 
 <Accordion title="The invite saved, but they got no email">
-  You will see **Invite saved**. The invite is still there. Find the pending row and click **Resend Invite**.
+  You will see **Invite saved**. Under it: **The invite was saved, but the email did not go out. Use Resend to try again.** Find the pending row and click **Resend Invite**.
 </Accordion>
 
 <Accordion title="Send Invite says the email is invalid">
-  Use a normal email address, like `name@company.com`. The form rejects addresses without an `@` and a domain.
+  Use a normal email address, like `name@company.com`. You will see **Please enter a valid email address**.
 </Accordion>
 
 <Accordion title="I cannot find a client I already invited">
