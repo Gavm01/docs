@@ -1,82 +1,113 @@
 ---
 title: "Agency Overview"
-description: "Manage multiple client accounts from one platform"
+description: "Run client accounts from the Agency menu"
 ---
 
-## Run an Agency on AgentClara
+## Run an agency on AgentClara
 
-If you're managing customer service for multiple clients (or planning to), AgentClara lets you:
-- **Manage all clients from one dashboard**
-- **White-label Clara for your clients** (they think it's your product)
-- **Track usage and billing separately** for each client
-- **Scale without adding staff**
+An agency account is for businesses that serve clients, not only their own customers.
 
-## How It Works
+You invite each client. They get their own Clara account and their own subscription. You earn a commission when they are invoiced. You can put your logo, color, and web address on the portal they log in to.
 
-You create **Sub-Accounts** (one for each client). Each sub-account has:
-- Its own inbox
-- Its own agent configuration
-- Its own billing
-- Its own users and permissions
+## Start as an agency
 
-Think of it like managing separate businesses from one place.
+Go to [https://agentclara.app/start/agency](https://agentclara.app/start/agency).
 
-## Your Role: Agency Owner
+Tell Clara you serve clients. When your own setup is live, the next job is **Add your first client**. You will also see **Set up your white-label** and **Invite a teammate**.
 
-As the agency owner, you can:
-- ✅ Create new sub-accounts (new clients)
-- ✅ Invite users to specific clients
-- ✅ Set permission levels (who can do what)
-- ✅ See all conversations, contacts, and analytics across clients
-- ✅ Manage billing for each client
-- ✅ White-label the platform with your branding
+## Where everything lives
 
-## The Setup Path
+Open **Agency** in the sidebar.
 
-<CardGroup cols={1}>
-  <Card title="1. Create Your First Sub-Account" href="/agency-setup/adding-clients">
-    Add your first client to the platform
+<CardGroup cols={2}>
+  <Card title="Home">
+    Your reseller dashboard. Active clients, monthly recurring revenue (MRR), pending payout, and commission this month.
   </Card>
-  <Card title="2. Invite Team Members" href="/agency-setup/adding-clients">
-    Let people from your agency or your client manage their account
+  <Card title="Clients" href="/agency-setup/adding-clients">
+    The client list, plus **+ Invite Client**.
   </Card>
-  <Card title="3. White-Label (Optional)" href="/agency-setup/white-label">
-    Make it look like your product, not ours
+  <Card title="Revenue" href="/agency-setup/billing">
+    Commission, top clients, and payout history.
   </Card>
-  <Card title="4. Set Up Billing" href="/agency-setup/billing">
-    Track costs per client and charge them back
+  <Card title="Team">
+    People who work at your agency. Invite them here.
+  </Card>
+  <Card title="Settings" href="/agency-setup/white-label">
+    Profile, billing, client defaults, white-label, and danger zone. Agency owners only.
   </Card>
 </CardGroup>
 
-## Key Concepts
+**Home**, **Clients**, **Revenue**, and **Settings** show for the agency owner. **Team** is in the same **Agency** menu.
 
-**Sub-Account**: A separate workspace for one of your clients. It has its own conversations, agents, and billing.
+Direct links:
 
-**Role**: Determines what someone can do:
-- **Owner** - Full control, can invite users and change billing
-- **Admin** - Can use all features but can't change billing or invite users
-- **User** - Can read conversations but can't change agent config
+- [https://agentclara.app/agency/home](https://agentclara.app/agency/home)
+- [https://agentclara.app/agency/clients](https://agentclara.app/agency/clients)
+- [https://agentclara.app/agency/revenue](https://agentclara.app/agency/revenue)
+- [https://agentclara.app/agency/team](https://agentclara.app/agency/team)
+- [https://agentclara.app/agency/settings](https://agentclara.app/agency/settings)
 
-**Sub-Account Selector**: In the top left of [https://agentclara.app](https://agentclara.app), you'll see a dropdown. Use it to switch between your clients.
+## The setup path
 
-## Multi-Client Inbox
+<CardGroup cols={1}>
+  <Card title="1. Invite your first client" href="/agency-setup/adding-clients">
+    **Agency → Clients → + Invite Client**. They get an email and set up their own account.
+  </Card>
+  <Card title="2. Invite your agency team">
+    **Agency → Team → Invite member**. This is your staff, not a client.
+  </Card>
+  <Card title="3. White-label the portal" href="/agency-setup/white-label">
+    Logo, color, subdomain, and the login screen.
+  </Card>
+  <Card title="4. Get paid" href="/agency-setup/billing">
+    Connect Stripe. Commission is paid out after your clients are invoiced.
+  </Card>
+</CardGroup>
 
-All your clients' conversations show up in one inbox. You can:
-- Filter by client
-- Tag conversations
-- Escalate urgent issues
-- Route to specific team members
+## Home
 
-This means you can manage 10 clients (or 100) without 10 separate logins.
+**Home** says **Welcome back** and **Your reseller dashboard**.
 
-## Where to Go Next
+The numbers at the top are **Active clients**, **MRR** (monthly recurring revenue), **Pending payout**, and **Commission this month**.
 
-**New to agencies?** Start with [Adding Clients](/agency-setup/adding-clients).
+**Recent activity** is what just happened. If it is empty, you will see **No recent activity yet.**
 
-**Ready to white-label?** Check out [White-Label Setup](/agency-setup/white-label).
+**Action items** lists clients who need attention. Click a name to open that client. If everyone is fine, you will see **No clients need attention right now.**
 
-**Need billing help?** See [Billing & Pricing](/agency-setup/billing).
+Each item can show a suggested next step, such as **Send payment reminder**, **Review grace period**, **Convert trial**, **Check in with client**, **Complete onboarding**, or **Set escalation contact**.
 
----
+**Quick links** go to **View all clients**, **Revenue & commissions**, and **Settings**.
+
+## Your agency team
+
+Go to **Agency → Team**.
+
+Click **Invite member**. Enter their email and a role:
+
+- **Owner**
+- **Admin** — can invite and remove members
+- **Member** — can view all clients
+
+Click **Send invitation**. They get an email. Until they accept, they sit under **Pending invitations**, where you can **Resend** or **Revoke**.
+
+To remove someone later, use **Remove member**. They lose access to agency data.
+
+## Words the product uses
+
+**Client** — a business you invited. They have their own login, their own plan, and their own subscription.
+
+**Plan** — **Starter**, **Growth**, **Scale**, or **Enterprise**. You pick this on the invite. You can set a default under **Client Defaults**.
+
+**Commission** — your share of a client invoice. You see it on **Home**, **Clients**, **Revenue**, and the client page.
+
+**Agency owner** — the account that can open **Settings**. If you are not the owner, Settings says **You don't have access to agency settings.**
+
+## Where to go next
+
+**New here?** Invite a client in [Adding Clients](/agency-setup/adding-clients).
+
+**Ready to brand the portal?** Open [White-Label](/agency-setup/white-label).
+
+**Ready to get paid?** Open [Billing](/agency-setup/billing).
 
 **Questions?** Email support@agentclara.ai
