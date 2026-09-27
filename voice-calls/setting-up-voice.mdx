@@ -9,7 +9,9 @@ Go to [https://agentclara.app/integrations/phone-numbers](https://agentclara.app
 
 The page title is **Phone Numbers**. The line under it is **Manage your phone numbers and SMS settings**.
 
-Until you add one, you see **No phone number added yet** and **Add a number to start sending SMS and making calls from your own line.**
+Until you add one, a note says **No phone number added yet** and **Add a number to start sending SMS and making calls from your own line.**
+
+When the list itself is empty, the heading is **No phone numbers**. The line under it is **Buy or import phone numbers to start sending SMS and making calls.** The buttons are **Get a Number** and **Import number**, with **From Twilio** and **From SIP Trunk**.
 
 ## Get a number
 
@@ -57,6 +59,8 @@ On **Phone Numbers**, click **From Twilio**.
 
 The page says **Import phone numbers you already own in your Twilio account.**
 
+A help note titled **Twilio Import** says **If you already own numbers in Twilio, you can import them here. They'll be added to Clara automatically.** Close it with **Got it**.
+
 **From SIP Trunk** is also on that page. Choosing it says **SIP trunk configuration requires additional setup**.
 
 ## After the number is on the list
@@ -66,6 +70,7 @@ Each row shows **Voice**, **SMS**, and **WhatsApp** as **Yes** or **No**.
 - **Enable SMS for outbound messages** if you want texts from that number. If SMS is off, the page says **SMS is off — outbound messages will use the system default number.**
 - **Set Outbound** marks the number **Outbound**. You should see **Outbound number updated**. If it fails, you see **Failed to set outbound number**. **Remove Outbound** takes that off. You should see **Outbound status removed**. If it fails, you see **Failed to remove outbound status**.
 - **Make Default** shows the **Default** badge. You should see **Default number updated**. If it fails, you see **Failed to set default number**.
+- Removing a number asks **Remove** that number **from this workspace?** The line under it is **We will check whether this number can be given up safely. If it can, the rental stops and you cannot get the number back.** Confirm with **Remove**, or leave it with **Cancel**.
 
 The page says **When a customer calls any of your Clara numbers, she picks up automatically according to your call forwarding rules (set in Agent settings).**
 

@@ -9,17 +9,23 @@ Go to [https://agentclara.app/compliance](https://agentclara.app/compliance).
 
 You can also open **Settings**, then **Compliance & Privacy**, from Workspace Settings. Opening [https://agentclara.app/settings/compliance](https://agentclara.app/settings/compliance) takes you there.
 
-The heading is **Compliance & Security**.
+The heading is **Compliance & Security**. The line under it is **Enterprise-grade security, compliance, and governance controls**.
 
-If you use more than one workspace, select the account first. Otherwise you see **Select a sub-account before saving compliance settings**.
+Across the top, the cards are labeled **HIPAA**, **SOC 2**, and **GDPR**. Each one shows **Active** or **Inactive**. **Audit Logs** shows a number of days.
+
+**Security Score** says **Visual indicator based on encryption, retention, PII protection, and authentication settings.** The words under the score are **Needs improvement**, **Good security posture**, or **Excellent security posture**.
+
+The tabs are **Compliance Modes**, **Data Management**, **PII Protection**, and **Security**.
+
+If you use more than one workspace, select the account first. Saving without one shows **Select a sub-account before saving compliance settings**. Changing a switch without one shows **Select a sub-account before changing compliance settings**.
 
 ## What you can set
 
-The screen has labels for **HIPAA Compliance**, **SOC 2**, and **GDPR**. **SOC 2** and **GDPR** can show **Active** or **Off**.
+On **Compliance Modes**, the screen says **Root Workspace Settings:** and **The settings below apply to your root workspace. Use the sub-account controls above for per-account settings.**
 
-AgentClara itself is not HIPAA or SOC 2 compliant. The database the app runs on, Supabase, is the compliant part.
+**Compliance Frameworks** has a switch labeled **HIPAA Compliance**. The line under it is **Health Insurance Portability and Accountability Act**.
 
-Turning a switch on, or seeing **Active**, does not certify your Clara account. It does not file anything with a regulator for you.
+The box under that starts with **What this means:** and then **Activates HIPAA safeguards including encryption, audit trails, and access controls for handling protected health information (PHI).** That box is text on the screen. AgentClara itself is not HIPAA or SOC 2 compliant. The database the app runs on, Supabase, is the compliant part. Turning a switch on, or seeing **Active**, does not certify your Clara account. It does not file anything with a regulator for you.
 
 **Data Management:** says **Record your intended retention and audit log periods.**
 
@@ -27,11 +33,21 @@ Turning a switch on, or seeing **Active**, does not certify your Clara account. 
 
 **Audit Log Retention (days) — not enforced** says **Records how long you intend to keep audit logs (365 days is a common choice). Audit logs are not currently removed on a schedule, so they are kept indefinitely.**
 
-**PII Protection & Redaction** has **Auto-Redact PII**. The screen says: **Records your preference for redacting personally identifiable information. Redaction does not currently run on its own.** Rules can be **Mask**, **Hash**, or **Remove**.
+**PII Protection:** says **Automatically redact sensitive or regulated data from transcripts.**
 
-**Security Controls** includes **Encrypt Call Recordings**. The line under it is **Encrypt all voice call recordings at rest**. That is the label on the switch. It is not a certificate.
+**PII Protection & Redaction** has **Auto-Redact PII — not enforced**. The screen says: **Records your preference for redacting personally identifiable information. Redaction does not currently run on its own.** Rules can be **Mask**, **Hash**, or **Remove**.
 
-Click save. You should see **Settings saved**.
+**Security:** says **Manage call recording encryption settings.**
+
+**Security Controls** includes **Encrypt Call Recordings**. The line under it is **Encrypt all voice call recordings at rest**. The box under that starts with **What this means:** and then **Protects sensitive voice recordings with industry-standard encryption for privacy and compliance.** That box is text on the screen. It is not a certificate.
+
+Click **Save All Settings**. You should see **Settings saved**. If it fails, you see **Failed to save compliance settings**. If a switch fails to save on its own, you see **Failed to auto-save compliance setting**.
+
+## Security suggestions
+
+**Security Suggestions** says **General hardening steps worth considering. This is a fixed list — it does not reflect what is currently switched on for your account.**
+
+The list is **Enable 2FA for all team members**, **Turn on transcript encryption**, and **Enable audit log export**.
 
 ## What this page does not do
 
